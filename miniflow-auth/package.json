@@ -1,0 +1,13 @@
+{
+  "name": "miniflow-auth",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Serverless functions — no build step needed'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@vercel/node": "^3"
+  }
+}

@@ -1,0 +1,1234 @@
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[21:30:44 Swift/AX] checkAccessibility: trusted=false
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[21:30:52 Swift/AX] checkAccessibility: trusted=false
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=2179)
+[21:59:18 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [2179]
+INFO:     Waiting for application startup.
+[21:59:19 main] MiniFlow engine starting on http://localhost:8765
+[21:59:19 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 49495) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/has_api_keys HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_user_name HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_connected_providers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_style_preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_advanced_settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49517 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49517 - "GET /health HTTP/1.1" 200 OK
+[21:59:55 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[21:59:55 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[21:59:55 audio] Waves transcript: 'Hey, how are you?'
+[21:59:55 audio] Waves transcript: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[21:59:55 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+[21:59:55 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[21:59:55 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how are you?'
+[21:59:55 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[21:59:59 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[21:59:59 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[21:59:59 audio] Waves transcript: 'Hey, how are you?'
+[21:59:59 audio] Waves transcript: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[21:59:59 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+[21:59:59 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[21:59:59 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how are you?'
+[21:59:59 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:00:10 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:10 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:10 audio] Waves transcript: 'Hey, how are you?'
+[22:00:10 audio] Waves transcript: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:00:10 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+[22:00:10 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+INFO:     127.0.0.1:49502 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:00:10 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how are you?'
+[22:00:10 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:00:17 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:17 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:17 audio] Waves transcript: 'Hey, what's going on?'
+[22:00:17 audio] Waves transcript: 'Hey, what's going on?'
+INFO:     127.0.0.1:49502 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:00:17 agent] No OpenAI key set, emitting dictation action: 'Hey, what's going on?'
+[22:00:17 agent] No OpenAI key set, emitting dictation action: 'Hey, what's going on?'
+INFO:     127.0.0.1:49502 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:00:17 Swift/AX] handleLocalDictation: trusted=false, text='Hey, what's going on?'
+[22:00:17 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:00:25 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:25 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:00:25 audio] Waves transcript: 'Good morning, how are you doing today?'
+[22:00:25 audio] Waves transcript: 'Good morning, how are you doing today?'
+INFO:     127.0.0.1:49502 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:00:25 agent] No OpenAI key set, emitting dictation action: 'Good morning, how are you doing today?'
+[22:00:25 agent] No OpenAI key set, emitting dictation action: 'Good morning, how are you doing today?'
+INFO:     127.0.0.1:49502 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:00:25 Swift/AX] handleLocalDictation: trusted=false, text='Good morning, how are you doing today?'
+[22:00:25 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49502 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49640 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:07:02 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:07:02 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:07:02 audio] Waves transcript: 'Hello, what is your name?'
+[22:07:02 audio] Waves transcript: 'Hello, what is your name?'
+INFO:     127.0.0.1:49586 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:07:02 agent] No OpenAI key set, emitting dictation action: 'Hello, what is your name?'
+[22:07:02 agent] No OpenAI key set, emitting dictation action: 'Hello, what is your name?'
+INFO:     127.0.0.1:49586 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:07:02 Swift/AX] handleLocalDictation: trusted=false, text='Hello, what is your name?'
+[22:07:02 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49586 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:07:06 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:07:06 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:07:06 audio] Waves transcript: 'Hey, what's your name?'
+[22:07:06 audio] Waves transcript: 'Hey, what's your name?'
+INFO:     127.0.0.1:49586 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:07:06 agent] No OpenAI key set, emitting dictation action: 'Hey, what's your name?'
+[22:07:06 agent] No OpenAI key set, emitting dictation action: 'Hey, what's your name?'
+INFO:     127.0.0.1:49586 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:07:06 Swift/AX] handleLocalDictation: trusted=false, text='Hey, what's your name?'
+[22:07:06 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49586 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49680 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:11:09 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:11:09 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:11:09 audio] Waves transcript: 'How about the other two people going out or walking?'
+[22:11:09 audio] Waves transcript: 'How about the other two people going out or walking?'
+INFO:     127.0.0.1:49650 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:11:09 agent] No OpenAI key set, emitting dictation action: 'How about the other two people going out or walking?'
+[22:11:09 agent] No OpenAI key set, emitting dictation action: 'How about the other two people going out or walking?'
+INFO:     127.0.0.1:49650 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:11:09 Swift/AX] handleLocalDictation: trusted=false, text='How about the other two people going out or walking?'
+[22:11:09 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49650 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49681 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49681 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49681 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49711 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:28:31 agent] No OpenAI key set, emitting dictation action: 'hel'
+[22:28:31 agent] No OpenAI key set, emitting dictation action: 'hel'
+INFO:     127.0.0.1:49961 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:28:31 Swift/AX] handleLocalDictation: trusted=false, text='hel'
+[22:28:31 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:28:42 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:28:42 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:28:42 audio] Waves transcript: 'What is the meaning of life?'
+[22:28:42 audio] Waves transcript: 'What is the meaning of life?'
+INFO:     127.0.0.1:49961 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:28:42 agent] No OpenAI key set, emitting dictation action: 'What is the meaning of life?'
+[22:28:42 agent] No OpenAI key set, emitting dictation action: 'What is the meaning of life?'
+INFO:     127.0.0.1:49961 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:28:42 Swift/AX] handleLocalDictation: trusted=false, text='What is the meaning of life?'
+[22:28:42 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49961 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     connection closed
+[22:30:10 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=4739)
+[22:30:44 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [4739]
+INFO:     Waiting for application startup.
+[22:30:44 main] MiniFlow engine starting on http://localhost:8765
+[22:30:44 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50011) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50013 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50013 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/has_api_keys HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_user_name HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_connected_providers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_style_preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_advanced_settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50014 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     connection closed
+[22:31:15 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=4769)
+[22:31:56 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [4769]
+INFO:     Waiting for application startup.
+[22:31:56 main] MiniFlow engine starting on http://localhost:8765
+[22:31:56 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50024) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:32:34 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:32:34 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:32:34 audio] Waves transcript: 'Hey nice to meet you.'
+[22:32:34 audio] Waves transcript: 'Hey nice to meet you.'
+INFO:     127.0.0.1:50028 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:32:34 agent] No OpenAI key set, emitting dictation action: 'Hey nice to meet you.'
+[22:32:34 agent] No OpenAI key set, emitting dictation action: 'Hey nice to meet you.'
+INFO:     127.0.0.1:50028 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:32:34 Swift/AX] handleLocalDictation: trusted=false, text='Hey nice to meet you.'
+[22:32:34 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50034 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:32:41 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:32:41 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:32:41 audio] Waves transcript: 'Hey, nice to meet you.'
+[22:32:41 audio] Waves transcript: 'Hey, nice to meet you.'
+INFO:     127.0.0.1:50028 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:32:41 agent] No OpenAI key set, emitting dictation action: 'Hey, nice to meet you.'
+[22:32:41 agent] No OpenAI key set, emitting dictation action: 'Hey, nice to meet you.'
+INFO:     127.0.0.1:50028 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:32:41 Swift/AX] handleLocalDictation: trusted=false, text='Hey, nice to meet you.'
+[22:32:41 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50028 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50042 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     connection closed
+[22:37:35 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=5195)
+[22:38:10 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [5195]
+INFO:     Waiting for application startup.
+[22:38:10 main] MiniFlow engine starting on http://localhost:8765
+[22:38:10 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50098) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50099 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:39:42 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=5320)
+[22:43:56 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [5320]
+INFO:     Waiting for application startup.
+[22:43:57 main] MiniFlow engine starting on http://localhost:8765
+[22:43:57 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50173) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50181 - "GET /health HTTP/1.1" 200 OK
+[22:44:10 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:10 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:10 audio] Waves transcript: ''
+[22:44:10 audio] Waves transcript: ''
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "GET /health HTTP/1.1" 200 OK
+[22:44:14 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:14 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:14 audio] Waves transcript: 'So do you know the last is why I don't uh'
+[22:44:14 audio] Waves transcript: 'So do you know the last is why I don't uh'
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:44:14 agent] No OpenAI key set, emitting dictation action: 'So do you know the last is why I don't uh'
+[22:44:14 agent] No OpenAI key set, emitting dictation action: 'So do you know the last is why I don't uh'
+INFO:     127.0.0.1:50174 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:44:14 Swift/AX] handleLocalDictation: trusted=false, text='So do you know the last is why I don't uh'
+[22:44:14 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:44:19 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:19 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:19 audio] Waves transcript: 'Hey, how are you?'
+[22:44:19 audio] Waves transcript: 'Hey, how are you?'
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:44:19 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+[22:44:19 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+INFO:     127.0.0.1:50174 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:44:19 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how are you?'
+[22:44:19 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:44:38 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:38 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:38 audio] Waves transcript: ''
+[22:44:38 audio] Waves transcript: ''
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "GET /health HTTP/1.1" 200 OK
+[22:44:46 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:46 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:46 audio] Waves transcript: 'Hi, how's it going?'
+[22:44:46 audio] Waves transcript: 'Hi, how's it going?'
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:44:46 agent] No OpenAI key set, emitting dictation action: 'Hi, how's it going?'
+[22:44:46 agent] No OpenAI key set, emitting dictation action: 'Hi, how's it going?'
+INFO:     127.0.0.1:50174 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:44:46 Swift/AX] handleLocalDictation: trusted=false, text='Hi, how's it going?'
+[22:44:46 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:44:59 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:59 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[22:44:59 audio] Waves transcript: 'Hey, how is it going?'
+[22:44:59 audio] Waves transcript: 'Hey, how is it going?'
+INFO:     127.0.0.1:50174 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[22:44:59 agent] No OpenAI key set, emitting dictation action: 'Hey, how is it going?'
+[22:44:59 agent] No OpenAI key set, emitting dictation action: 'Hey, how is it going?'
+INFO:     127.0.0.1:50174 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[22:44:59 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how is it going?'
+[22:44:59 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50174 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50193 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50196 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[22:48:00 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=5654)
+[22:50:31 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [5654]
+INFO:     Waiting for application startup.
+[22:50:32 main] MiniFlow engine starting on http://localhost:8765
+[22:50:32 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50248) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50269 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50410 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50473 - "GET /health HTTP/1.1" 200 OK
+[23:23:16 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:23:16 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:23:16 audio] Waves transcript: ''
+[23:23:16 audio] Waves transcript: ''
+INFO:     127.0.0.1:50430 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[23:23:22 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:23:22 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:23:22 audio] Waves transcript: 'Hi, what's the weather?'
+[23:23:22 audio] Waves transcript: 'Hi, what's the weather?'
+INFO:     127.0.0.1:50430 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+[23:23:22 agent] No OpenAI key set, emitting dictation action: 'Hi, what's the weather?'
+[23:23:22 agent] No OpenAI key set, emitting dictation action: 'Hi, what's the weather?'
+INFO:     127.0.0.1:50430 - "POST /invoke/execute_command HTTP/1.1" 200 OK
+[23:23:22 Swift/AX] handleLocalDictation: trusted=false, text='Hi, what's the weather?'
+[23:23:22 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50430 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[23:33:51 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:33:51 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:33:51 audio] Waves transcript: ''
+[23:33:51 audio] Waves transcript: ''
+INFO:     127.0.0.1:50558 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "GET /health HTTP/1.1" 200 OK
+[23:33:58 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:33:58 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:33:58 audio] Waves transcript: ''
+[23:33:58 audio] Waves transcript: ''
+INFO:     127.0.0.1:50558 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50558 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     connection closed
+[23:34:05 main] MiniFlow engine shutting down
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] launchctl setenv SSL_CERT_FILE set
+[Swift] launchctl setenv REQUESTS_CA_BUNDLE set
+[Swift] SSL cert env configured: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/_internal/certifi/cacert.pem
+[Swift] Engine launched (pid=5979)
+[23:34:11 Swift/AX] checkAccessibility: trusted=false
+INFO:     Started server process [5979]
+INFO:     Waiting for application startup.
+[23:34:11 main] MiniFlow engine starting on http://localhost:8765
+[23:34:11 main] MiniFlow engine starting on http://localhost:8765
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     ('127.0.0.1', 50565) - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:50571 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50575 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[23:34:26 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:34:26 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:34:26 audio] Waves transcript: ''
+[23:34:26 audio] Waves transcript: ''
+INFO:     127.0.0.1:50572 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[23:34:34 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:34:34 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:34:34 audio] Waves transcript: ''
+[23:34:34 audio] Waves transcript: ''
+INFO:     127.0.0.1:50572 - "POST /invoke/transcribe_audio HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/has_api_keys HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_user_name HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_connected_providers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_style_preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_advanced_settings HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50572 - "POST /invoke/get_history HTTP/1.1" 200 OK
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[23:35:18 Swift/AX] checkAccessibility: trusted=false
+[23:35:47 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:35:47 audio] Waves transcript: ''
+[23:35:54 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:35:54 audio] Waves transcript: ''
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[23:42:34 Swift/AX] checkAccessibility: trusted=false
+[23:42:49 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 403 Forbidden"
+[23:42:49 main] [transcribe_audio] Client error '403 Forbidden' for url 'https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[23:42:52 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:42:52 audio] Waves transcript: 'Hi, how are you today, how is it going?'
+[23:42:52 agent] No OpenAI key set, emitting dictation action: 'Hi, how are you today, how is it going?'
+[23:42:52 Swift/AX] handleLocalDictation: trusted=false, text='Hi, how are you today, how is it going?'
+[23:42:52 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[23:42:59 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:42:59 audio] Waves transcript: 'Hey, how are you?'
+[23:42:59 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you?'
+[23:42:59 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how are you?'
+[23:42:59 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[23:43:08 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:43:08 audio] Waves transcript: 'Good morning it's my birthday today'
+[23:43:08 agent] No OpenAI key set, emitting dictation action: 'Good morning it's my birthday today'
+[23:43:08 Swift/AX] handleLocalDictation: trusted=false, text='Good morning it's my birthday today'
+[23:43:08 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[23:43:36 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:43:36 audio] Waves transcript: 'Hey is it your birthday today?'
+[23:43:36 agent] No OpenAI key set, emitting dictation action: 'Hey is it your birthday today?'
+[23:43:36 Swift/AX] handleLocalDictation: trusted=false, text='Hey is it your birthday today?'
+[23:43:36 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[23:51:00 Swift/AX] checkAccessibility: trusted=false
+[23:51:14 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:51:14 audio] Waves transcript: ''
+[23:51:15 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:51:15 audio] Waves transcript: 'Hey, how's it going?'
+[23:51:15 agent] No OpenAI key set, emitting dictation action: 'Hey, how's it going?'
+[23:51:15 Swift/AX] handleLocalDictation: trusted=false, text='Hey, how's it going?'
+[23:51:15 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[23:51:21 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:51:21 audio] Waves transcript: 'Hi, this is Minnie Flo.'
+[23:51:21 agent] No OpenAI key set, emitting dictation action: 'Hi, this is Minnie Flo.'
+[23:51:21 Swift/AX] handleLocalDictation: trusted=false, text='Hi, this is Minnie Flo.'
+[23:51:21 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[23:51:40 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:51:40 audio] Waves transcript: 'Hello, I'm using Miniflow right now.'
+[23:51:40 agent] No OpenAI key set, emitting dictation action: 'Hello, I'm using Miniflow right now.'
+[23:51:40 Swift/AX] handleLocalDictation: trusted=false, text='Hello, I'm using Miniflow right now.'
+[23:51:40 Swift/AX] handleLocalDictation: no accessibility, copied to clipboard
+[Swift] Found engine at: /Applications/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+[Swift] Engine already listening on :8765, skipping launch
+[23:52:53 Swift/AX] checkAccessibility: trusted=false
+[23:52:59 Swift/AX] Accessibility granted (detected by poll)
+[23:53:24 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:53:24 audio] Waves transcript: 'Hey, how are you doing?'
+[23:53:24 agent] No OpenAI key set, emitting dictation action: 'Hey, how are you doing?'
+[23:53:24 Swift/AX] handleLocalDictation: trusted=true, text='Hey, how are you doing?'
+[23:53:24 Swift/AX] typeTextLocally: injected 23 UTF-16 units in 3 chunks
+[23:53:24 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:56:37 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:56:37 audio] Waves transcript: 'But it is actually finally working for me now.'
+[23:56:37 agent] No OpenAI key set, emitting dictation action: 'But it is actually finally working for me now.'
+[23:56:37 Swift/AX] handleLocalDictation: trusted=true, text='But it is actually finally working for me now.'
+[23:56:37 Swift/AX] typeTextLocally: injected 46 UTF-16 units in 5 chunks
+[23:56:37 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:56:38 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:56:38 audio] Waves transcript: 'Mm-hmm.'
+[23:56:38 agent] No OpenAI key set, emitting dictation action: 'Mm-hmm.'
+[23:56:38 Swift/AX] handleLocalDictation: trusted=true, text='Mm-hmm.'
+[23:56:38 Swift/AX] typeTextLocally: injected 7 UTF-16 units in 1 chunks
+[23:56:38 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:56:49 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:56:49 audio] Waves transcript: 'Look, I'm using it again and I think it's pretty good.'
+[23:56:49 agent] No OpenAI key set, emitting dictation action: 'Look, I'm using it again and I think it's pretty good.'
+[23:56:49 Swift/AX] handleLocalDictation: trusted=true, text='Look, I'm using it again and I think it's pretty good.'
+[23:56:49 Swift/AX] typeTextLocally: injected 54 UTF-16 units in 6 chunks
+[23:56:49 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:57:09 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:57:09 audio] Waves transcript: 'Heart emoji'
+[23:57:09 agent] No OpenAI key set, emitting dictation action: 'Heart emoji'
+[23:57:09 Swift/AX] handleLocalDictation: trusted=true, text='Heart emoji'
+[23:57:09 Swift/AX] typeTextLocally: injected 11 UTF-16 units in 2 chunks
+[23:57:09 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:57:19 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:57:19 audio] Waves transcript: 'I sure hope so.'
+[23:57:19 agent] No OpenAI key set, emitting dictation action: 'I sure hope so.'
+[23:57:19 Swift/AX] handleLocalDictation: trusted=true, text='I sure hope so.'
+[23:57:19 Swift/AX] typeTextLocally: injected 15 UTF-16 units in 2 chunks
+[23:57:19 Swift/AX] handleLocalDictation: typed via CGEvent
+[23:57:23 httpx] HTTP Request: POST https://waves-api.smallest.ai/api/v1/pulse/get_text?model=pulse&language=en "HTTP/1.1 200 OK"
+[23:57:23 audio] Waves transcript: 'This is pretty cool.'
+[23:57:23 agent] No OpenAI key set, emitting dictation action: 'This is pretty cool.'
+[23:57:23 Swift/AX] handleLocalDictation: trusted=true, text='This is pretty cool.'
+[23:57:23 Swift/AX] typeTextLocally: injected 20 UTF-16 units in 2 chunks
+[23:57:23 Swift/AX] handleLocalDictation: typed via CGEvent

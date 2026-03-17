@@ -1,0 +1,48 @@
+name: Build MiniFlow DMG
+
+on:
+  push:
+    branches: [main, ui]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(grep -m1 'MARKETING_VERSION' MiniflowApp/MiniflowApp.xcodeproj/project.pbxproj \
+            | sed 's/.*= *//;s/;//;s/ *//')
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Create venv & install dependencies
+        run: |
+          cd miniflow-engine
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build (backend + Swift app + DMG)
+        run: |
+          chmod +x build_all.sh build_backend.sh build_dmg.sh
+          ./build_all.sh
+        env:
+          CONFIG: Release
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: MiniFlow-${{ steps.version.outputs.version }}
+          path: build/MiniFlow-${{ steps.version.outputs.version }}.dmg
+          retention-days: 30

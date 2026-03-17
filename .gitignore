@@ -1,0 +1,41 @@
+# Build outputs
+build/
+miniflow-engine/dist/
+miniflow-engine/build/
+miniflow-engine/__pycache__/
+miniflow-engine/*.spec
+**/__pycache__/
+**/*.pyc
+
+# Xcode
+*.xcuserdata/
+xcuserdata/
+DerivedData/
+*.xcbuilddata
+*.xcresult
+*.dSYM
+
+# Node / Vite
+node_modules/
+dist/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Secrets / config (never commit API keys)
+miniflow/
+oauth_clients.json
+miniflow_keys.json
+*.env
+.env*
+
+# Python venvs
+miniflow-engine/.venv/
+miniflow-engine/venv/
+
+# Claude internal docs
+.claude/
+
+# Vercel deployment config
+.vercel/

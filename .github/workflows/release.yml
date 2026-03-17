@@ -1,0 +1,53 @@
+name: Build DMG
+
+on:
+  push:
+    branches:
+      - main
+      - audioTransmission
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version override (e.g. 0.2.1). Leave blank to read from project.'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION=$(grep -m1 'MARKETING_VERSION' MiniflowApp/MiniflowApp.xcodeproj/project.pbxproj \
+              | sed 's/.*= *//;s/;//;s/ *//')
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Create venv & install dependencies
+        run: |
+          python3 -m venv miniflow-engine/venv
+          miniflow-engine/venv/bin/pip install --upgrade pip
+          miniflow-engine/venv/bin/pip install -r miniflow-engine/requirements.txt
+
+      - name: Build (backend + Swift app + DMG)
+        run: VERSION=${{ steps.version.outputs.version }} bash build_all.sh
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MiniFlow-${{ steps.version.outputs.version }}
+          path: build/MiniFlow-${{ steps.version.outputs.version }}.dmg
+          retention-days: 14
