@@ -71,13 +71,16 @@ def get_api_key(service: str) -> str:
 
 def has_api_keys() -> dict:
     keys = _read_json(KEYS_FILE, {})
-    return {"smallest": keys.get("smallest"), "openai": keys.get("openai")}
+    return {"smallest": keys.get("smallest"), "openai": keys.get("openai"), "cerebras": keys.get("cerebras")}
 
 def get_openai_key() -> str:
     return get_api_key("openai")
 
 def get_smallest_key() -> str:
     return get_api_key("smallest")
+
+def get_cerebras_key() -> str:
+    return get_api_key("cerebras")
 
 
 # ── Settings ──

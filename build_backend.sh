@@ -44,9 +44,9 @@ cd "$ENGINE_DIR"
   --hidden-import "uvicorn.lifespan.on" \
   --hidden-import "uvicorn.protocols.http.auto" \
   --hidden-import "uvicorn.protocols.websockets.auto" \
-  --hidden-import "word2number" \
   --collect-all "pyobjc_framework_Quartz" \
   --collect-all "pyobjc_framework_AppKit" \
+  --collect-all "cerebras" \
   --noconfirm \
   main.py
 

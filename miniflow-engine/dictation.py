@@ -64,34 +64,37 @@ async def stop_dictation():
 
 
 def type_text(text: str):
-    """Inject text into the focused app via CGEvent.
-
-    \\n in text is emitted as Shift+Return so it inserts a new line
-    without submitting forms / sending messages.
-    """
+    """Inject text via clipboard paste (Cmd+V), then restore the previous clipboard."""
     try:
+        import time
         import Quartz
+        import AppKit
         if not text:
             return
+        log.info(f"type_text: pasting {len(text)} chars")
+        pb = AppKit.NSPasteboard.generalPasteboard()
+
+        # Save previous clipboard contents
+        prev = pb.stringForType_(AppKit.NSPasteboardTypeString)
+
+        pb.clearContents()
+        pb.setString_forType_(text, AppKit.NSPasteboardTypeString)
+
         src = Quartz.CGEventSourceCreate(Quartz.kCGEventSourceStateHIDSystemState)
-        log.info(f"type_text: injecting {len(text)} chars (trusted={AXIsProcessTrusted()})")
-        kVK_Return = 0x24
-        segments = text.split('\n')
-        for idx, segment in enumerate(segments):
-            if segment:
-                down = Quartz.CGEventCreateKeyboardEvent(src, 0, True)
-                up   = Quartz.CGEventCreateKeyboardEvent(src, 0, False)
-                Quartz.CGEventKeyboardSetUnicodeString(down, len(segment), segment)
-                Quartz.CGEventKeyboardSetUnicodeString(up,   len(segment), segment)
-                Quartz.CGEventPost(Quartz.kCGHIDEventTap, down)
-                Quartz.CGEventPost(Quartz.kCGHIDEventTap, up)
-            if idx < len(segments) - 1:
-                ret_down = Quartz.CGEventCreateKeyboardEvent(src, kVK_Return, True)
-                ret_up   = Quartz.CGEventCreateKeyboardEvent(src, kVK_Return, False)
-                Quartz.CGEventSetFlags(ret_down, Quartz.kCGEventFlagMaskShift)
-                Quartz.CGEventSetFlags(ret_up,   Quartz.kCGEventFlagMaskShift)
-                Quartz.CGEventPost(Quartz.kCGHIDEventTap, ret_down)
-                Quartz.CGEventPost(Quartz.kCGHIDEventTap, ret_up)
+        kVK_V = 0x09
+        down = Quartz.CGEventCreateKeyboardEvent(src, kVK_V, True)
+        up   = Quartz.CGEventCreateKeyboardEvent(src, kVK_V, False)
+        Quartz.CGEventSetFlags(down, Quartz.kCGEventFlagMaskCommand)
+        Quartz.CGEventSetFlags(up,   Quartz.kCGEventFlagMaskCommand)
+        Quartz.CGEventPost(Quartz.kCGHIDEventTap, down)
+        Quartz.CGEventPost(Quartz.kCGHIDEventTap, up)
+
+        # Wait briefly for the paste to land, then restore
+        time.sleep(0.1)
+        pb.clearContents()
+        if prev is not None:
+            pb.setString_forType_(prev, AppKit.NSPasteboardTypeString)
+
         log.info("type_text: done")
     except Exception as e:
         log.error(f"type_text failed: {e}")

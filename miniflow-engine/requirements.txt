@@ -6,4 +6,4 @@ pyobjc>=9.0
 python-dotenv==1.0.1
 pyperclip==1.9.0
 certifi
-word2number>=1.1
+cerebras-cloud-sdk>=1.0.0

@@ -61,6 +61,7 @@ struct SettingsTab: View {
     // MARK: - API Keys
 
     @State private var smallestSaveState: SaveState = .idle
+    @State private var cerebrasSaveState: SaveState = .idle
     enum SaveState { case idle, saving, saved, error }
 
     private var apiKeysSection: some View {
@@ -80,6 +81,23 @@ struct SettingsTab: View {
                         }
                     }
                     stateHint(state: smallestSaveState, hint: "Used for real-time speech-to-text.")
+                }
+            }
+            settingsCard {
+                VStack(alignment: .leading, spacing: 12) {
+                    sectionLabel("Cerebras")
+                    HStack(spacing: 10) {
+                        SecureField("API Key", text: $vm.cerebrasKey)
+                            .textFieldStyle(.roundedBorder)
+                            .font(.system(size: 13))
+                            .onChange(of: vm.cerebrasKey) { _ in cerebrasSaveState = .idle }
+                        saveButton(state: cerebrasSaveState, disabled: vm.cerebrasKey.isEmpty) {
+                            cerebrasSaveState = .saving
+                            let ok = await vm.saveCerebrasKey()
+                            cerebrasSaveState = ok ? .saved : .error
+                        }
+                    }
+                    stateHint(state: cerebrasSaveState, hint: "Used for AI transcript formatting.")
                 }
             }
         }
@@ -142,36 +160,6 @@ struct SettingsTab: View {
                         }
                         Divider().padding(.horizontal, 16)
                     }
-
-                    settingsRow(
-                        title: "Remove Filler Words",
-                        subtitle: "Strips um, uh, er and similar words from your transcript."
-                    ) {
-                        Toggle("", isOn: $vm.removeFillerWords)
-                            .labelsHidden()
-                            .toggleStyle(.switch)
-                            .controlSize(.small)
-                            .onChange(of: vm.removeFillerWords) { enabled in
-                                Task { await vm.saveRemoveFillerWords(enabled) }
-                            }
-                    }
-
-                    Divider().padding(.horizontal, 16)
-
-                    settingsRow(
-                        title: "New Line Mode",
-                        subtitle: "Say \"new line\" to move the cursor to the next line (Shift+Return)."
-                    ) {
-                        Toggle("", isOn: $vm.newlineMode)
-                            .labelsHidden()
-                            .toggleStyle(.switch)
-                            .controlSize(.small)
-                            .onChange(of: vm.newlineMode) { enabled in
-                                Task { await vm.saveNewlineMode(enabled) }
-                            }
-                    }
-
-                    Divider().padding(.horizontal, 16)
 
                     settingsRow(
                         title: "Accessibility Permission",

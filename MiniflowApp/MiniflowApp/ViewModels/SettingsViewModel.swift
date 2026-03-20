@@ -6,12 +6,10 @@ import AppKit
 final class SettingsViewModel: ObservableObject {
 
     @Published var smallestKey = ""
+    @Published var cerebrasKey = ""
     @Published var userName = ""
     @Published var isLoading = false
     @Published var saveStatus: String?
-    @Published var removeFillerWords = true
-    @Published var numeralMode = false
-    @Published var newlineMode = false
 
     private let api = APIClient.shared
     init() {}
@@ -24,14 +22,10 @@ final class SettingsViewModel: ObservableObject {
 
         if let keys: ApiKeysResponse = try? await api.invoke("has_api_keys") {
             smallestKey = keys.smallest ?? ""
+            cerebrasKey = keys.cerebras ?? ""
         }
         if let name: String = try? await api.invoke("get_user_name") {
             userName = name
-        }
-        if let settings: AdvancedSettings = try? await api.invoke("get_advanced_settings") {
-            removeFillerWords = settings.fillerRemoval
-            numeralMode = settings.numeralMode
-            newlineMode = settings.newlineMode
         }
     }
 
@@ -46,25 +40,18 @@ final class SettingsViewModel: ObservableObject {
         }
     }
 
+    func saveCerebrasKey() async -> Bool {
+        do {
+            try await api.invokeVoid("save_api_key", body: ["service": "cerebras", "key": cerebrasKey])
+            return true
+        } catch {
+            return false
+        }
+    }
+
     func saveUserName() async {
         try? await api.invokeVoid("save_user_name", body: ["name": userName])
         flashStatus("Saved")
-    }
-
-    // MARK: - Filler words
-
-    func saveRemoveFillerWords(_ enabled: Bool) async {
-        try? await api.invokeVoid("save_advanced_setting", body: ["key": "filler_removal", "value": enabled])
-    }
-
-    // MARK: - Numeral mode
-
-    func saveNumeralMode(_ enabled: Bool) async {
-        try? await api.invokeVoid("save_advanced_setting", body: ["key": "numeral_mode", "value": enabled])
-    }
-
-    func saveNewlineMode(_ enabled: Bool) async {
-        try? await api.invokeVoid("save_advanced_setting", body: ["key": "newline_mode", "value": enabled])
     }
 
     // MARK: - Helpers
@@ -79,11 +66,6 @@ final class SettingsViewModel: ObservableObject {
 
     private struct ApiKeysResponse: Decodable {
         let smallest: String?
-    }
-
-    private struct AdvancedSettings: Decodable {
-        let fillerRemoval: Bool
-        let numeralMode: Bool
-        let newlineMode: Bool
+        let cerebras: String?
     }
 }

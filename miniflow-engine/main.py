@@ -14,9 +14,10 @@ import base64
 import json
 import logging
 import os
-import re
 from contextlib import asynccontextmanager
 from typing import Any
+
+from cerebras.cloud.sdk import Cerebras
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -166,6 +167,77 @@ async def websocket_endpoint(ws: WebSocket):
 
 # ── Invoke dispatcher ──
 
+def _get_cerebras_client() -> Cerebras | None:
+    api_key = os.environ.get("CEREBRAS_API_KEY")
+    if not api_key:
+        try:
+            api_key = config.get_cerebras_key()
+        except Exception:
+            return None
+    return Cerebras(api_key=api_key)
+
+FORMATTER_PROMPT = """You are a lossless formatter. Convert raw speech transcription into clean text without changing meaning.
+
+Rules:
+Do not add words.
+Do not remove words except filler.
+Do not rephrase, rewrite, merge, summarize, or reorder.
+Do not add titles, labels, or structure unless explicitly requested.
+Keep wording as close to the input as possible.
+
+Allowed:
+remove filler words
+apply formatting commands
+add minimal punctuation
+capitalize sentence starts
+convert spoken numbers to numerals
+
+Remove filler if safe: um, uh, ah, like, you know, kinda, sort of, basically, actually, repeated words.
+
+If the speaker corrects themselves with no, wait, actually, or I mean, keep only the final corrected version.
+
+Commands:
+new line/next line = newline
+new paragraph = blank line
+in bullets = bullet list with "-"
+numbered list = numbered list
+
+Apply commands only to following text. Do not include command words in output.
+If command words are used as normal content, keep them as text.
+Only create lists if explicitly requested.
+
+Convert spoken numbers to numerals. Examples: five -> 5, twenty dollars -> $20, five pm -> 5 PM, twenty twenty four -> 2024.
+Do not add suffixes or over-format.
+
+Return only the formatted text."""
+
+
+_FORMAT_MIN_WORDS = 4
+
+
+def format_transcript(raw_text: str) -> str:
+    if not raw_text.strip():
+        return raw_text
+    input_tokens = len(raw_text.split())
+    if input_tokens < _FORMAT_MIN_WORDS:
+        return raw_text
+    client = _get_cerebras_client()
+    if client is None:
+        log.warning("Cerebras key not set — skipping AI formatting")
+        return raw_text
+    resp = client.chat.completions.create(
+        model="llama3.1-8b",
+        messages=[
+            {"role": "system", "content": FORMATTER_PROMPT},
+            {"role": "user", "content": raw_text},
+        ],
+        temperature=0,
+        max_completion_tokens=max(200, int(input_tokens * 1.3)),
+        stream=False,
+    )
+    return resp.choices[0].message.content.strip()
+
+
 async def _transcribe_audio(b: dict):
     import base64
     bundle_id = b.get("bundleID")
@@ -173,284 +245,10 @@ async def _transcribe_audio(b: dict):
         agent.set_target_app(bundle_id)
     wav_bytes = base64.b64decode(b["audio"])
     transcript = await audio.transcribe(wav_bytes)
-    settings = config.get_advanced_settings()
-    if settings.get("filler_removal"):
-        transcript = _remove_filler_words(transcript, config.get_all_filler_words())
-    transcript = _convert_numerals(transcript)
-    if settings.get("newline_mode"):
-        # After a full stop: insert \n and capitalise the first letter of the next word
-        transcript = re.sub(
-            r'(\.)[ \t]*\b(?:new\s+line|newline)\b[ \t]*([a-zA-Z])',
-            lambda m: m.group(1) + '\n' + m.group(2).upper(),
-            transcript, flags=re.I,
-        )
-        # No full stop before: just insert \n, no capitalisation
-        transcript = re.sub(r'[ \t]*\b(?:new\s+line|newline)\b[ \t]*', '\n', transcript, flags=re.I)
+    transcript = format_transcript(transcript)
     transcript = dictionary.apply(transcript)
     transcript = shortcuts.apply(transcript)
     return {"transcript": transcript}
-
-
-try:
-    from word2number import w2n as _w2n_mod
-    def _w2i(phrase: str) -> str | None:
-        try:
-            return str(_w2n_mod.word_to_num(phrase))
-        except Exception:
-            return None
-except ImportError:
-    def _w2i(phrase: str) -> str | None:  # type: ignore[misc]
-        return None
-
-_DIGIT_WORDS = {
-    "zero": "0", "oh": "0", "one": "1", "two": "2", "three": "3",
-    "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
-}
-
-_COMPOUND_WORDS = frozenset({
-    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
-    "seventeen", "eighteen", "nineteen",
-    "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",
-    "hundred", "thousand", "million", "billion",
-})
-
-_ANY_NUM_WORD = frozenset(set(_DIGIT_WORDS) | _COMPOUND_WORDS)
-
-# Ordinal units: only used when following a tens number or in a date context.
-_ORDINAL_UNITS = {
-    "first": (1, "st"), "second": (2, "nd"), "third": (3, "rd"),
-    "fourth": (4, "th"), "fifth": (5, "th"), "sixth": (6, "th"),
-    "seventh": (7, "th"), "eighth": (8, "th"), "ninth": (9, "th"),
-}
-
-_ORDINAL_ALL = {
-    **_ORDINAL_UNITS,
-    "tenth": (10, "th"), "eleventh": (11, "th"), "twelfth": (12, "th"),
-    "thirteenth": (13, "th"), "fourteenth": (14, "th"), "fifteenth": (15, "th"),
-    "sixteenth": (16, "th"), "seventeenth": (17, "th"), "eighteenth": (18, "th"),
-    "nineteenth": (19, "th"), "twentieth": (20, "th"),
-    "thirtieth": (30, "th"), "fortieth": (40, "th"), "fiftieth": (50, "th"),
-    "sixtieth": (60, "th"), "seventieth": (70, "th"), "eightieth": (80, "th"),
-    "ninetieth": (90, "th"),
-}
-
-_MONTHS = frozenset({
-    "january", "february", "march", "april", "may", "june",
-    "july", "august", "september", "october", "november", "december",
-})
-
-
-def _convert_numerals(text: str) -> str:
-    """Convert spoken number words to numerals.
-
-    PIN/phone  : 'two five six four'                → '2564'
-    Plus prefix: 'plus one four four four'          → '+1444'
-    Compound   : 'twenty-five'                      → '25'
-    Decimal    : 'one point five'                   → '1.5'
-    Time       : 'three forty-five P M'             → '3:45 PM'
-    Date ord.  : 'April twenty-seventh'             → 'April 27th'
-    """
-    if not text:
-        return text
-
-    # ── Pre-passes ────────────────────────────────────────────────────────────
-    # Hyphenated compounds + ordinals: "twenty-five" / "twenty-seventh" → two tokens
-    text = re.sub(
-        r'\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)'
-        r'-(one|two|three|four|five|six|seven|eight|nine|'
-        r'first|second|third|fourth|fifth|sixth|seventh|eighth|ninth)\b',
-        r'\1 \2', text, flags=re.I,
-    )
-    # Spaced AM/PM: "P M" / "A M" → "PM" / "AM"
-    text = re.sub(r'\bA\s+M\b', 'AM', text, flags=re.I)
-    text = re.sub(r'\bP\s+M\b', 'PM', text, flags=re.I)
-
-    def _clean(tok: str) -> str:
-        return re.sub(r"[.,;:!?'\"]+$", "", tok).lower()
-
-    def _trail(tok: str) -> str:
-        return tok[len(re.sub(r"[.,;:!?'\"]+$", "", tok)):]
-
-    def _is_compound_start(idx: int) -> bool:
-        """True when token starts a compound number span."""
-        c = _clean(tokens[idx])
-        if c in _COMPOUND_WORDS:
-            return True
-        # digit word immediately before a compound word (e.g. "one hundred")
-        if c in _DIGIT_WORDS and idx + 1 < len(tokens) and _clean(tokens[idx + 1]) in _COMPOUND_WORDS:
-            return True
-        return False
-
-    tokens = text.split()
-    out: list[str] = []
-    i = 0
-
-    while i < len(tokens):
-        c = _clean(tokens[i])
-
-        # ── plus prefix → phone / country code ───────────────────────────────
-        if c == "plus" and i + 1 < len(tokens) and _clean(tokens[i + 1]) in _DIGIT_WORDS:
-            i += 1
-            run = "+"
-            while i < len(tokens) and _clean(tokens[i]) in _DIGIT_WORDS:
-                dig = _DIGIT_WORDS[_clean(tokens[i])]
-                trail = _trail(tokens[i])
-                i += 1
-                if trail:
-                    out.append(run + dig + trail)
-                    run = ""
-                    break
-                run += dig
-            if run:
-                out.append(run)
-            continue
-
-        # ── compound number span (word2number) ───────────────────────────────
-        if _is_compound_start(i):
-            j = i
-            parts: list[str] = []
-            while j < len(tokens):
-                ct = _clean(tokens[j])
-                if ct in _ANY_NUM_WORD:
-                    parts.append(ct)
-                    j += 1
-                elif ct == "and" and j + 1 < len(tokens) and _clean(tokens[j + 1]) in _ANY_NUM_WORD:
-                    j += 1  # skip "and"; w2n handles without it
-                else:
-                    break
-
-            phrase = " ".join(parts)
-            converted = _w2i(phrase)
-            if converted is not None:
-                trail = _trail(tokens[j - 1])
-                c_next = _clean(tokens[j]) if j < len(tokens) else ""
-                if not trail and c_next in _ORDINAL_UNITS:
-                    # "twenty seventh" → "27th"
-                    unit_val, unit_suf = _ORDINAL_UNITS[c_next]
-                    unit_trail = _trail(tokens[j])
-                    out.append(str(int(converted) + unit_val) + unit_suf + unit_trail)
-                    j += 1
-                elif not trail and c_next in ("am", "pm"):
-                    # Multi-token span + AM/PM → try hour:minute split first
-                    # e.g. "ten thirty AM" → 10:30 AM, not "40 AM"
-                    time_str = None
-                    if len(parts) > 1:
-                        hr = _w2i(parts[0])
-                        mn = _w2i(" ".join(parts[1:]))
-                        if hr and mn and 1 <= int(hr) <= 12 and 0 <= int(mn) <= 59:
-                            time_str = f"{int(hr)}:{int(mn):02d} {tokens[j].upper()}"
-                    out.append(time_str if time_str else converted + " " + tokens[j].upper())
-                    j += 1
-                else:
-                    out.append(converted + trail)
-                i = j
-                continue
-            # word2number failed → fall through to digit-sequence path if applicable
-            if c not in _DIGIT_WORDS:
-                out.append(tokens[i])
-                i += 1
-                continue
-
-        # ── single-digit word sequence → concatenated run (PIN / code) ───────
-        if c in _DIGIT_WORDS:
-            run = ""
-            while i < len(tokens) and _clean(tokens[i]) in _DIGIT_WORDS:
-                dig = _DIGIT_WORDS[_clean(tokens[i])]
-                trail = _trail(tokens[i])
-                i += 1
-                if trail:
-                    out.append(run + dig + trail)
-                    run = ""
-                    break
-                run += dig
-            if run:
-                out.append(run)
-            continue
-
-        out.append(tokens[i])
-        i += 1
-
-    # ── Post-passes ───────────────────────────────────────────────────────────
-    result = " ".join(out)
-    # Phone fragments: "+1, 732, 405, 1036" → "+17324051036"
-    result = re.sub(
-        r'\+\d+(?:,\s*\d+)+',
-        lambda m: '+' + re.sub(r'\D', '', m.group(0)),
-        result,
-    )
-    # Decimal: "1 point 5" → "1.5"
-    result = re.sub(r'(\d+)\s+[Pp]oint\s+(\d+)', r'\1.\2', result)
-    # Time: "3 45 PM" → "3:45 PM"  (minute must be 00-59)
-    result = re.sub(r'\b(\d{1,2})\s+([0-5]\d)\s*(AM|PM)\b', r'\1:\2 \3', result)
-
-    # ── Ordinal post-passes (date context only) ───────────────────────────────
-    _ord_unit_pat = '|'.join(re.escape(w) for w in _ORDINAL_UNITS)
-    _ord_all_pat  = '|'.join(re.escape(w) for w in _ORDINAL_ALL)
-    _month_pat    = '|'.join(re.escape(m) for m in _MONTHS)
-
-    def _ord_unit_val(word: str) -> tuple[int, str]:
-        return _ORDINAL_UNITS[word.lower()]
-
-    def _ord_all_val(word: str) -> tuple[int, str]:
-        return _ORDINAL_ALL[word.lower()]
-
-    # "20 seventh" → "27th"  (STT pre-digitised the tens word)
-    result = re.sub(
-        rf'\b(\d+)\s+({_ord_unit_pat})([.,;:!?]?)\b',
-        lambda m: str(int(m.group(1)) + _ord_unit_val(m.group(2))[0])
-                  + _ord_unit_val(m.group(2))[1] + m.group(3),
-        result, flags=re.I,
-    )
-    # "April seventh" / "January twentieth" → "April 7th" / "January 20th"
-    result = re.sub(
-        rf'\b({_month_pat})\s+({_ord_all_pat})([.,;:!?]?)\b',
-        lambda m: m.group(1) + ' '
-                  + str(_ord_all_val(m.group(2))[0]) + _ord_all_val(m.group(2))[1]
-                  + m.group(3),
-        result, flags=re.I,
-    )
-    # "seventh of April" / "first of January" → "7th of April" / "1st of January"
-    result = re.sub(
-        rf'\b({_ord_all_pat})\s+of\s+({_month_pat})\b',
-        lambda m: str(_ord_all_val(m.group(1))[0]) + _ord_all_val(m.group(1))[1]
-                  + ' of ' + m.group(2),
-        result, flags=re.I,
-    )
-
-    # ── Large ordinals (always convert in numeral mode) ───────────────────────
-    # "millionth" → "1000000th";  "10 millionth" → "10000000th"
-    _LARGE_ORDINALS = {
-        "hundredth":    100,
-        "thousandth":   1_000,
-        "millionth":    1_000_000,
-        "billionth":    1_000_000_000,
-    }
-    for word, mult in _LARGE_ORDINALS.items():
-        result = re.sub(
-            rf'\b(?:(\d+)\s+)?{word}\b',
-            lambda m, mult=mult: str((int(m.group(1)) if m.group(1) else 1) * mult) + "th",
-            result, flags=re.I,
-        )
-    return result
-
-
-def _remove_filler_words(text: str, words: list[str]) -> str:
-    if not text or not words:
-        return text
-    candidates = [w.strip().lower() for w in words if isinstance(w, str) and w.strip()]
-    if not candidates:
-        return text
-    # Longer phrases first so we don't partially match them.
-    candidates = sorted(set(candidates), key=len, reverse=True)
-    pattern = r"\\b(?:%s)\\b" % "|".join(re.escape(w) for w in candidates)
-    cleaned = re.sub(pattern, "", text, flags=re.IGNORECASE)
-    cleaned = re.sub(r"\s+([,.;:!?])", r"\1", cleaned)
-    cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
-    cleaned = re.sub(r"^\s*,\s*", "", cleaned)
-    cleaned = re.sub(r",\s*,+", ",", cleaned)
-    cleaned = re.sub(r",\s*(?=[.?!]|$)", "", cleaned)
-    cleaned = re.sub(r",\s*(\S)", r", \1", cleaned)
-    return cleaned
 
 
 @app.post("/invoke/{command}")
