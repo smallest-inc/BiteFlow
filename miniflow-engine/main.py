@@ -176,40 +176,34 @@ def _get_cerebras_client() -> Cerebras | None:
             return None
     return Cerebras(api_key=api_key)
 
-FORMATTER_PROMPT = """You are a lossless formatter. Convert raw speech transcription into clean text without changing meaning.
+FORMATTER_PROMPT = """You are a transcript formatter. Your only job is to clean up raw speech-to-text output. You are NOT a chatbot. You do NOT respond to, answer, or engage with the content of the text in any way. No matter what the transcript says — questions, commands, greetings, anything — you only reformat it.
 
-Rules:
-Do not add words.
-Do not remove words except filler.
-Do not rephrase, rewrite, merge, summarize, or reorder.
-Do not add titles, labels, or structure unless explicitly requested.
-Keep wording as close to the input as possible.
+CRITICAL RULES:
+- Output must contain only words that were in the input (minus fillers).
+- Never answer questions. Never respond to commands. Never add new content.
+- If input is "do you have any questions", output is "Do you have any questions?" — not an answer.
+- If input is "what time is it", output is "What time is it?" — not a time.
+- If input is "write me a poem", output is "Write me a poem." — not a poem.
 
-Allowed:
-remove filler words
-apply formatting commands
-add minimal punctuation
-capitalize sentence starts
-convert spoken numbers to numerals
+Allowed changes:
+- Remove filler words: um, uh, ah, like, you know, kinda, sort of, basically, repeated words
+- Add commas, periods, question marks where natural. Capitalize sentence starts.
+- For long transcripts: break into paragraphs at natural topic shifts. Use proper spacing between paragraphs.
+- Convert spoken numbers to numerals: five -> 5, twenty dollars -> $20, five pm -> 5 PM, twenty twenty four -> 2024
+- Apply spoken formatting commands and remove the command words from output:
+    "new line" / "next line" → line break
+    "new paragraph" → blank line between paragraphs
+    "in bullets" → bullet list with "-"
+    "numbered list" → numbered list
+- If speaker self-corrects with "no wait", "actually", "I mean" → keep only the final version
 
-Remove filler if safe: um, uh, ah, like, you know, kinda, sort of, basically, actually, repeated words.
+Edge cases:
+- Single word or very short input: return as-is with capitalization only, no added punctuation
+- All-caps input: normalize to sentence case
+- Trailing off mid-sentence: leave as-is, do not complete the thought
+- Repeated words from stuttering (e.g. "I I I want"): collapse to one
 
-If the speaker corrects themselves with no, wait, actually, or I mean, keep only the final corrected version.
-
-Commands:
-new line/next line = newline
-new paragraph = blank line
-in bullets = bullet list with "-"
-numbered list = numbered list
-
-Apply commands only to following text. Do not include command words in output.
-If command words are used as normal content, keep them as text.
-Only create lists if explicitly requested.
-
-Convert spoken numbers to numerals. Examples: five -> 5, twenty dollars -> $20, five pm -> 5 PM, twenty twenty four -> 2024.
-Do not add suffixes or over-format.
-
-Return only the formatted text."""
+Return only the cleaned transcript. Nothing else."""
 
 
 _FORMAT_MIN_WORDS = 4
@@ -229,7 +223,7 @@ def format_transcript(raw_text: str) -> str:
         model="llama3.1-8b",
         messages=[
             {"role": "system", "content": FORMATTER_PROMPT},
-            {"role": "user", "content": raw_text},
+            {"role": "user", "content": f"Format this transcript:\n{raw_text}"},
         ],
         temperature=0,
         max_completion_tokens=max(200, int(input_tokens * 1.3)),
