@@ -318,31 +318,45 @@ final class AgentViewModel: ObservableObject {
 
     private func typeTextLocally(_ text: String) async {
         guard !text.isEmpty else { return }
+        guard let source = CGEventSource(stateID: .hidSystemState) else { return }
 
-        // Save previous clipboard, paste text via Cmd+V, then restore
         let pasteboard = NSPasteboard.general
         let previous = pasteboard.string(forType: .string)
+        let segments = text.components(separatedBy: "\n")
 
-        pasteboard.clearContents()
-        pasteboard.setString(text, forType: .string)
+        for (idx, segment) in segments.enumerated() {
+            // Paste segment via Cmd+V
+            if !segment.isEmpty {
+                pasteboard.clearContents()
+                pasteboard.setString(segment, forType: .string)
+                if let down = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true),
+                   let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) {
+                    down.flags = .maskCommand
+                    up.flags   = .maskCommand
+                    down.post(tap: .cghidEventTap)
+                    up.post(tap: .cghidEventTap)
+                }
+                try? await Task.sleep(nanoseconds: 50_000_000) // 50ms for paste to land
+            }
 
-        guard let source = CGEventSource(stateID: .hidSystemState),
-              let down = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true),
-              let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) else {
-            axLog("typeTextLocally: failed to create CGEventSource")
-            return
+            // Send Shift+Return between segments (newline without submitting)
+            if idx < segments.count - 1 {
+                if let down = CGEvent(keyboardEventSource: source, virtualKey: 0x24, keyDown: true),
+                   let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x24, keyDown: false) {
+                    down.flags = .maskShift
+                    up.flags   = .maskShift
+                    down.post(tap: .cghidEventTap)
+                    up.post(tap: .cghidEventTap)
+                }
+                try? await Task.sleep(nanoseconds: 20_000_000) // 20ms
+            }
         }
-        down.flags = .maskCommand
-        up.flags   = .maskCommand
-        down.post(tap: .cghidEventTap)
-        up.post(tap: .cghidEventTap)
 
-        // Wait for paste to land then restore previous clipboard
-        try? await Task.sleep(nanoseconds: 150_000_000) // 150ms
+        // Restore previous clipboard
         pasteboard.clearContents()
         if let previous { pasteboard.setString(previous, forType: .string) }
 
-        axLog("typeTextLocally: pasted \(text.count) chars via Cmd+V")
+        axLog("typeTextLocally: pasted \(segments.count) segments via Cmd+V + Shift+Return")
     }
 
     private func applyFillerRemovalIfEnabled(_ text: String) async -> String {
