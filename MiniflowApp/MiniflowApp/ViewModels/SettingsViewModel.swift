@@ -6,7 +6,7 @@ import AppKit
 final class SettingsViewModel: ObservableObject {
 
     @Published var smallestKey = ""
-    @Published var cerebrasKey = ""
+    @Published var openaiKey = ""
     @Published var userName = ""
     @Published var isLoading = false
     @Published var saveStatus: String?
@@ -22,7 +22,7 @@ final class SettingsViewModel: ObservableObject {
 
         if let keys: ApiKeysResponse = try? await api.invoke("has_api_keys") {
             smallestKey = keys.smallest ?? ""
-            cerebrasKey = keys.cerebras ?? ""
+            openaiKey = keys.openai ?? ""
         }
         if let name: String = try? await api.invoke("get_user_name") {
             userName = name
@@ -40,9 +40,9 @@ final class SettingsViewModel: ObservableObject {
         }
     }
 
-    func saveCerebrasKey() async -> Bool {
+    func saveOpenAIKey() async -> Bool {
         do {
-            try await api.invokeVoid("save_api_key", body: ["service": "cerebras", "key": cerebrasKey])
+            try await api.invokeVoid("save_api_key", body: ["service": "openai", "key": openaiKey])
             return true
         } catch {
             return false
@@ -66,6 +66,6 @@ final class SettingsViewModel: ObservableObject {
 
     private struct ApiKeysResponse: Decodable {
         let smallest: String?
-        let cerebras: String?
+        let openai: String?
     }
 }

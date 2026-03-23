@@ -200,6 +200,8 @@ struct HomeTab: View {
 
 private struct HistoryRow: View {
     let entry: HistoryEntry
+    @State private var isHovered = false
+    @State private var copied = false
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -231,9 +233,25 @@ private struct HistoryRow: View {
             }
 
             Spacer()
+
+            if isHovered {
+                Button {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(entry.transcript, forType: .string)
+                    copied = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { copied = false }
+                } label: {
+                    Image(systemName: copied ? "checkmark" : "doc.on.doc")
+                        .font(.system(size: 11))
+                        .foregroundStyle(copied ? Color(hex: "2D6B5E") : Color.textMuted)
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 2)
+            }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
+        .onHover { isHovered = $0 }
     }
 
     private var actionTags: [String] {

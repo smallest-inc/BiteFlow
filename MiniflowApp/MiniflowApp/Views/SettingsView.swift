@@ -61,7 +61,7 @@ struct SettingsTab: View {
     // MARK: - API Keys
 
     @State private var smallestSaveState: SaveState = .idle
-    @State private var cerebrasSaveState: SaveState = .idle
+    @State private var openaiSaveState: SaveState = .idle
     enum SaveState { case idle, saving, saved, error }
 
     private var apiKeysSection: some View {
@@ -85,19 +85,19 @@ struct SettingsTab: View {
             }
             settingsCard {
                 VStack(alignment: .leading, spacing: 12) {
-                    sectionLabel("Cerebras")
+                    sectionLabel("OpenAI")
                     HStack(spacing: 10) {
-                        SecureField("API Key", text: $vm.cerebrasKey)
+                        SecureField("API Key", text: $vm.openaiKey)
                             .textFieldStyle(.roundedBorder)
                             .font(.system(size: 13))
-                            .onChange(of: vm.cerebrasKey) { _ in cerebrasSaveState = .idle }
-                        saveButton(state: cerebrasSaveState, disabled: vm.cerebrasKey.isEmpty) {
-                            cerebrasSaveState = .saving
-                            let ok = await vm.saveCerebrasKey()
-                            cerebrasSaveState = ok ? .saved : .error
+                            .onChange(of: vm.openaiKey) { _ in openaiSaveState = .idle }
+                        saveButton(state: openaiSaveState, disabled: vm.openaiKey.isEmpty) {
+                            openaiSaveState = .saving
+                            let ok = await vm.saveOpenAIKey()
+                            openaiSaveState = ok ? .saved : .error
                         }
                     }
-                    stateHint(state: cerebrasSaveState, hint: "Used for AI transcript formatting.")
+                    stateHint(state: openaiSaveState, hint: "Used for AI transcript formatting (GPT-4o mini).")
                 }
             }
         }

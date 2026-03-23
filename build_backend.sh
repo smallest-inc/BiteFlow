@@ -46,7 +46,6 @@ cd "$ENGINE_DIR"
   --hidden-import "uvicorn.protocols.websockets.auto" \
   --collect-all "pyobjc_framework_Quartz" \
   --collect-all "pyobjc_framework_AppKit" \
-  --collect-all "cerebras" \
   --noconfirm \
   main.py
 

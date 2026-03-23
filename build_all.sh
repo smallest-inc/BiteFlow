@@ -105,6 +105,10 @@ echo "→ Re-signing main executable..."
 codesign --force --sign - "$APP_PATH/Contents/MacOS/MiniflowApp"
 echo "✓ App re-signed (ad-hoc)"
 
+# Strip quarantine so users can open without Gatekeeper warning
+xattr -cr "$APP_PATH" 2>/dev/null || true
+echo "✓ Quarantine attribute removed"
+
 # ── Step 4: Create DMG ────────────────────────────────────────────────────────
 
 echo ""

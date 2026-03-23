@@ -2,7 +2,7 @@ name: Build MiniFlow DMG
 
 on:
   push:
-    branches: [main, ui, development]
+    branches: [main, ui, development, ai]
   workflow_dispatch:
 
 jobs:

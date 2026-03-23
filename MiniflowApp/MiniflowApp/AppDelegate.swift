@@ -33,6 +33,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         setupMenuBarStatusObserver()
         setupPillVisibilityObserver()
         EventStream.shared.connect()
+        mainWindow?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationWillTerminate(_ notification: Notification) {
