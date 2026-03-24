@@ -273,15 +273,6 @@ final class AgentViewModel: ObservableObject {
                 return
             }
 
-            if let bundleID {
-                activateTargetApp(bundleID)
-                // Wait for the app to come to front — poll until it's frontmost or timeout
-                for _ in 0..<20 {
-                    try? await Task.sleep(nanoseconds: 50_000_000) // 50ms
-                    if NSWorkspace.shared.frontmostApplication?.bundleIdentifier == bundleID { break }
-                }
-            }
-
             await typeTextLocally(text)
             let totalMs = keyReleaseTime.map { Int(Date().timeIntervalSince($0) * 1000) } ?? 0
             axLog("""
@@ -291,7 +282,7 @@ final class AgentViewModel: ObservableObject {
             │  Fn release → screen : \(totalMs)ms
             └────────────────────────────────────────────
             """)
-            axLog("handleLocalDictation: typed via CGEvent")
+            axLog("handleLocalDictation: typed via Cmd+V fallback")
             return
         }
 
@@ -317,13 +308,14 @@ final class AgentViewModel: ObservableObject {
     private func typeTextLocally(_ text: String) async {
         guard !text.isEmpty else { return }
 
-        // Try AXUIElement first — inserts text directly at cursor, handles newlines natively
+        // Try AXUIElement first — works for native apps, handles newlines natively
         if insertTextViaAX(text) {
             axLog("typeTextLocally: inserted via AXUIElement (\(text.count) chars)")
             return
         }
 
-        // Fallback: clipboard paste via Cmd+V
+        // AX failed (e.g. Electron apps) — paste via Cmd+V immediately, no activation wait
+        // The target app still has focus since MiniFlow's pill is non-activating
         axLog("typeTextLocally: AX failed, falling back to Cmd+V")
         let pasteboard = NSPasteboard.general
         let previous = pasteboard.string(forType: .string)
