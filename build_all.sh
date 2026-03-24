@@ -74,7 +74,7 @@ xcodebuild \
   -scheme "$SCHEME" \
   -configuration "$CONFIG" \
   CODE_SIGN_IDENTITY="$SIGN_IDENTITY" \
-  CODE_SIGN_STYLE=Manual \i
+  CODE_SIGN_STYLE=Manual \
   DEVELOPMENT_TEAM="$DEV_TEAM" \
   CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
   clean build

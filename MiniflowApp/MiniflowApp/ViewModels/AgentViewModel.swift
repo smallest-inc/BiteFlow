@@ -175,7 +175,12 @@ final class AgentViewModel: ObservableObject {
                     let prev = UserDefaults.standard.double(forKey: "mf_total_speaking_seconds")
                     UserDefaults.standard.set(prev + duration, forKey: "mf_total_speaking_seconds")
                 }
-                await executeCommand(fullText)
+                // Skip the execute_command round-trip — history is saved
+                // in transcribe_audio and the text is always plain dictation.
+                let ar = ActionResult(action: "dictation", success: true, message: fullText)
+                actions = [ar] + actions
+                lastResultAction = ar
+                await handleLocalDictationIfNeeded([ar])
             }
             listeningStartTime = nil
         } catch {

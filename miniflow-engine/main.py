@@ -241,15 +241,24 @@ def format_transcript(raw_text: str) -> str:
 
 
 async def _transcribe_audio(b: dict):
-    import base64
+    import base64, time
     bundle_id = b.get("bundleID")
     if bundle_id:
         agent.set_target_app(bundle_id)
     wav_bytes = base64.b64decode(b["audio"])
+    t0 = time.monotonic()
     transcript = await audio.transcribe(wav_bytes)
+    stt_ms = int((time.monotonic() - t0) * 1000)
+    t1 = time.monotonic()
     transcript = format_transcript(transcript)
+    fmt_ms = int((time.monotonic() - t1) * 1000)
+    log.info(f"STT: {stt_ms}ms  |  GPT formatter: {fmt_ms}ms")
     transcript = dictionary.apply(transcript)
     transcript = shortcuts.apply(transcript)
+    if transcript.strip():
+        history.append_entry(transcript=transcript, entry_type="dictation",
+                             actions=[{"action": "dictation", "success": True, "message": transcript}],
+                             success=True)
     return {"transcript": transcript}
 
 
