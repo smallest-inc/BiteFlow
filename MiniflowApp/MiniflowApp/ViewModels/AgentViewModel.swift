@@ -32,7 +32,6 @@ final class AgentViewModel: ObservableObject {
     private var keyReleaseTime: Date?
     private var lastAudioLengthSecs: Double = 0
     private var lastSttMs: Int = 0
-    private let defaultFillerWords = ["um", "uh", "erm", "er", "ah", "uhh", "umm", "uhm"]
 
     init() {
         Task {
@@ -253,9 +252,8 @@ final class AgentViewModel: ObservableObject {
             return
         }
 
-        var text = dictation.message
+        let text = dictation.message
         guard !text.isEmpty else { return }
-        text = await applyFillerRemovalIfEnabled(text)
 
         let trusted = AXIsProcessTrusted()
         axLog("handleLocalDictation: trusted=\(trusted), text='\(String(text.prefix(60)))'")
@@ -318,92 +316,44 @@ final class AgentViewModel: ObservableObject {
 
     private func typeTextLocally(_ text: String) async {
         guard !text.isEmpty else { return }
-        guard let source = CGEventSource(stateID: .hidSystemState) else { return }
 
+        // Try AXUIElement first — inserts text directly at cursor, handles newlines natively
+        if insertTextViaAX(text) {
+            axLog("typeTextLocally: inserted via AXUIElement (\(text.count) chars)")
+            return
+        }
+
+        // Fallback: clipboard paste via Cmd+V
+        axLog("typeTextLocally: AX failed, falling back to Cmd+V")
         let pasteboard = NSPasteboard.general
         let previous = pasteboard.string(forType: .string)
-        let segments = text.components(separatedBy: "\n")
+        pasteboard.clearContents()
+        pasteboard.setString(text, forType: .string)
 
-        for (idx, segment) in segments.enumerated() {
-            // Paste segment via Cmd+V
-            if !segment.isEmpty {
-                pasteboard.clearContents()
-                pasteboard.setString(segment, forType: .string)
-                if let down = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true),
-                   let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) {
-                    down.flags = .maskCommand
-                    up.flags   = .maskCommand
-                    down.post(tap: .cghidEventTap)
-                    up.post(tap: .cghidEventTap)
-                }
-                try? await Task.sleep(nanoseconds: 50_000_000) // 50ms for paste to land
-            }
-
-            // Send Shift+Return between segments (newline without submitting)
-            if idx < segments.count - 1 {
-                if let down = CGEvent(keyboardEventSource: source, virtualKey: 0x24, keyDown: true),
-                   let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x24, keyDown: false) {
-                    down.flags = .maskShift
-                    up.flags   = .maskShift
-                    down.post(tap: .cghidEventTap)
-                    up.post(tap: .cghidEventTap)
-                }
-                try? await Task.sleep(nanoseconds: 20_000_000) // 20ms
-            }
+        if let source = CGEventSource(stateID: .hidSystemState),
+           let down = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true),
+           let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) {
+            down.flags = .maskCommand
+            up.flags   = .maskCommand
+            down.post(tap: .cghidEventTap)
+            up.post(tap: .cghidEventTap)
         }
 
-        // Restore previous clipboard
+        try? await Task.sleep(nanoseconds: 150_000_000)
         pasteboard.clearContents()
         if let previous { pasteboard.setString(previous, forType: .string) }
-
-        axLog("typeTextLocally: pasted \(segments.count) segments via Cmd+V + Shift+Return")
     }
 
-    private func applyFillerRemovalIfEnabled(_ text: String) async -> String {
-        guard let settings: AdvancedSettings = try? await api.invoke("get_advanced_settings") else {
-            return text
+    private func insertTextViaAX(_ text: String) -> Bool {
+        let systemWide = AXUIElementCreateSystemWide()
+        var focusedElement: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(systemWide, kAXFocusedUIElementAttribute as CFString, &focusedElement) == .success else {
+            return false
         }
-        guard settings.fillerRemoval else { return text }
-        return removeFillerWords(text, words: defaultFillerWords)
+        let element = focusedElement as! AXUIElement
+        return AXUIElementSetAttributeValue(element, kAXSelectedTextAttribute as CFString, text as CFTypeRef) == .success
     }
 
-    private func removeFillerWords(_ text: String, words: [String]) -> String {
-        let candidates = words
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
-            .filter { !$0.isEmpty }
-        guard !candidates.isEmpty else { return text }
-
-        let escaped = candidates.map { NSRegularExpression.escapedPattern(for: $0) }
-        let pattern = "\\b(?:" + escaped.joined(separator: "|") + ")\\b"
-        let regex = try? NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
-        let range = NSRange(text.startIndex..., in: text)
-        let removed = regex?.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "") ?? text
-
-        let punctRegex = try? NSRegularExpression(pattern: "\\s+([,.;:!?])", options: [])
-        let punctRange = NSRange(removed.startIndex..., in: removed)
-        let tightened = punctRegex?.stringByReplacingMatches(in: removed, options: [], range: punctRange, withTemplate: "$1") ?? removed
-
-        let spaceRegex = try? NSRegularExpression(pattern: "\\s{2,}", options: [])
-        let spaceRange = NSRange(tightened.startIndex..., in: tightened)
-        let collapsed = spaceRegex?.stringByReplacingMatches(in: tightened, options: [], range: spaceRange, withTemplate: " ") ?? tightened
-        let leadingCommaRegex = try? NSRegularExpression(pattern: "^\\s*,\\s*", options: [])
-        let leadingRange = NSRange(collapsed.startIndex..., in: collapsed)
-        let noLeadingComma = leadingCommaRegex?.stringByReplacingMatches(in: collapsed, options: [], range: leadingRange, withTemplate: "") ?? collapsed
-
-        let doubleCommaRegex = try? NSRegularExpression(pattern: ",\\s*,+", options: [])
-        let doubleRange = NSRange(noLeadingComma.startIndex..., in: noLeadingComma)
-        let noDoubleComma = doubleCommaRegex?.stringByReplacingMatches(in: noLeadingComma, options: [], range: doubleRange, withTemplate: ",") ?? noLeadingComma
-
-        let trailingCommaRegex = try? NSRegularExpression(pattern: ",\\s*(?=[.?!]|$)", options: [])
-        let trailingRange = NSRange(noDoubleComma.startIndex..., in: noDoubleComma)
-        let noTrailingComma = trailingCommaRegex?.stringByReplacingMatches(in: noDoubleComma, options: [], range: trailingRange, withTemplate: "") ?? noDoubleComma
-
-        let commaSpaceRegex = try? NSRegularExpression(pattern: ",\\s*(\\S)", options: [])
-        let commaSpaceRange = NSRange(noTrailingComma.startIndex..., in: noTrailingComma)
-        let normalizedCommas = commaSpaceRegex?.stringByReplacingMatches(in: noTrailingComma, options: [], range: commaSpaceRange, withTemplate: ", $1") ?? noTrailingComma
-
-        return normalizedCommas.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
 }
 
 // MARK: - Diagnostics
@@ -422,6 +372,3 @@ private func axLog(_ message: String) {
     }
 }
 
-private struct AdvancedSettings: Decodable {
-    let fillerRemoval: Bool
-}
