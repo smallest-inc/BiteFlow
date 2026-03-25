@@ -62,20 +62,18 @@ async def stream_transcribe(
                         data = json.loads(raw)
                     except Exception:
                         continue
-                    # Use full_transcript when stream is complete (is_last), else transcript
                     text = data.get("full_transcript") or data.get("transcript") or ""
+                    is_final = data.get("is_final", False)
                     is_last = data.get("is_last", False)
                     if text:
                         last_text = text
                         if on_partial:
                             await on_partial(text)
-                    if is_last:
+                    if is_final or is_last:
                         final_transcript = text or last_text
                         break
             except websockets.exceptions.ConnectionClosed:
                 pass
-            if not final_transcript and last_text:
-                final_transcript = last_text
 
         sender_task = asyncio.create_task(sender())
         receiver_task = asyncio.create_task(receiver())
@@ -87,6 +85,13 @@ async def stream_transcribe(
         except asyncio.TimeoutError:
             log.warning("WSS receiver timed out waiting for final transcript")
         receiver_task.cancel()
+        try:
+            await receiver_task
+        except asyncio.CancelledError:
+            pass
+        # Fallback: use last partial if is_final never arrived
+        if not final_transcript and last_text:
+            final_transcript = last_text
 
     stt_ms = (time.perf_counter() - t0) * 1000
     log.info(f"[LATENCY] Streaming STT: {stt_ms:.0f}ms | transcript: '{final_transcript}'")
