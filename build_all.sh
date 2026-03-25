@@ -175,7 +175,7 @@ if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "
       --apple-id "$APPLE_ID" \
       --password "$APPLE_APP_SPECIFIC_PASSWORD" \
       --team-id "$APPLE_TEAM_ID" 2>&1) || true
-    NOTARY_STATUS=$(echo "$WAIT_OUTPUT" | grep -i "status:" | head -1 | sed 's/.*status:[[:space:]]*//' | awk '{print $1}')
+    NOTARY_STATUS=$(echo "$WAIT_OUTPUT" | grep -i "status:" | head -1 | sed 's/.*status:[[:space:]]*//' | sed 's/[[:space:]]*$//')
     echo "  status: $NOTARY_STATUS"
     if [ "$NOTARY_STATUS" = "Accepted" ] || [ "$NOTARY_STATUS" = "Invalid" ] || [ "$NOTARY_STATUS" = "Rejected" ]; then
       break
