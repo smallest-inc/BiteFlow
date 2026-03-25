@@ -43,7 +43,14 @@ async def stream_transcribe(
     last_text = ""
     t0 = time.perf_counter()
 
-    async with websockets.connect(url, additional_headers=headers) as ws:
+    # ping_interval keeps connection alive during long recordings (up to ~60s+)
+    async with websockets.connect(
+        url,
+        additional_headers=headers,
+        ping_interval=10,
+        ping_timeout=30,
+        close_timeout=10,
+    ) as ws:
 
         async def sender():
             while True:
@@ -62,26 +69,27 @@ async def stream_transcribe(
                         data = json.loads(raw)
                     except Exception:
                         continue
+                    # full_transcript accumulates all segments; transcript is just the current one
                     text = data.get("full_transcript") or data.get("transcript") or ""
-                    is_final = data.get("is_final", False)
                     is_last = data.get("is_last", False)
                     if text:
                         last_text = text
                         if on_partial:
                             await on_partial(text)
-                    if is_final or is_last:
-                        final_transcript = text or last_text
+                    if is_last:
+                        final_transcript = last_text
                         break
+                    # is_final=true means a segment finalized — keep listening for more
             except websockets.exceptions.ConnectionClosed:
-                pass
+                pass  # connection closed — fallback to last_text below
 
         sender_task = asyncio.create_task(sender())
         receiver_task = asyncio.create_task(receiver())
 
-        # Wait for all chunks to be sent, then wait up to 5s for final response
+        # Wait for all chunks sent, then up to 15s for is_last (longer for long recordings)
         await sender_task
         try:
-            await asyncio.wait_for(asyncio.shield(receiver_task), timeout=5.0)
+            await asyncio.wait_for(asyncio.shield(receiver_task), timeout=15.0)
         except asyncio.TimeoutError:
             log.warning("WSS receiver timed out waiting for final transcript")
         receiver_task.cancel()
@@ -89,7 +97,7 @@ async def stream_transcribe(
             await receiver_task
         except asyncio.CancelledError:
             pass
-        # Fallback: use last partial if is_final never arrived
+        # Fallback: use accumulated full_transcript if is_last never arrived
         if not final_transcript and last_text:
             final_transcript = last_text
 
