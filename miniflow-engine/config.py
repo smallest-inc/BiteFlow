@@ -82,6 +82,9 @@ def get_smallest_key() -> str:
 def get_cerebras_key() -> str:
     return get_api_key("cerebras")
 
+def get_groq_key() -> str:
+    return get_api_key("groq")
+
 
 # ── Settings ──
 
