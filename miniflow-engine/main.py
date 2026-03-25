@@ -38,6 +38,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s %(name)s] %(message)s",
     datefmt="%H:%M:%S",
+    force=True,
     handlers=[
         logging.StreamHandler(),
         logging.FileHandler(str(_log_path), encoding="utf-8"),

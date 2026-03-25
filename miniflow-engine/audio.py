@@ -37,39 +37,56 @@ async def stream_transcribe(
         raise RuntimeError(str(e)) from e
 
     headers = {"Authorization": f"Bearer {key}"}
-    url = f"{_WSS_URL}?language=en&model=pulse"
+    url = f"{_WSS_URL}?language=en&encoding=linear16&sample_rate=16000"
 
     final_transcript = ""
+    last_text = ""
     t0 = time.perf_counter()
 
     async with websockets.connect(url, additional_headers=headers) as ws:
+
         async def sender():
             while True:
                 chunk = await chunk_queue.get()
-                if chunk is None:  # sentinel — end of audio
-                    await ws.close()
+                if chunk is None:  # sentinel — send finalize signal to server
+                    await ws.send(json.dumps({"type": "finalize"}))
                     return
                 await ws.send(chunk)
 
         async def receiver():
-            nonlocal final_transcript
+            nonlocal final_transcript, last_text
             try:
                 async for raw in ws:
+                    log.info(f"WSS response: {str(raw)[:300]}")
                     try:
                         data = json.loads(raw)
                     except Exception:
                         continue
-                    text = (data.get("transcription") or data.get("transcript")
-                            or data.get("text") or "")
-                    is_final = data.get("is_final", False) or data.get("isFinal", False)
-                    if text and on_partial:
-                        await on_partial(text)
-                    if is_final and text:
-                        final_transcript = text
+                    # Use full_transcript when stream is complete (is_last), else transcript
+                    text = data.get("full_transcript") or data.get("transcript") or ""
+                    is_last = data.get("is_last", False)
+                    if text:
+                        last_text = text
+                        if on_partial:
+                            await on_partial(text)
+                    if is_last:
+                        final_transcript = text or last_text
+                        break
             except websockets.exceptions.ConnectionClosed:
                 pass
+            if not final_transcript and last_text:
+                final_transcript = last_text
 
-        await asyncio.gather(sender(), receiver())
+        sender_task = asyncio.create_task(sender())
+        receiver_task = asyncio.create_task(receiver())
+
+        # Wait for all chunks to be sent, then wait up to 5s for final response
+        await sender_task
+        try:
+            await asyncio.wait_for(asyncio.shield(receiver_task), timeout=5.0)
+        except asyncio.TimeoutError:
+            log.warning("WSS receiver timed out waiting for final transcript")
+        receiver_task.cancel()
 
     stt_ms = (time.perf_counter() - t0) * 1000
     log.info(f"[LATENCY] Streaming STT: {stt_ms:.0f}ms | transcript: '{final_transcript}'")
