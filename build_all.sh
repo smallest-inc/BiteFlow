@@ -107,20 +107,25 @@ cp -R "$ENGINE_DIST" "$APP_PATH/Contents/Resources/miniflow-engine"
 chmod +x "$APP_PATH/Contents/Resources/miniflow-engine/miniflow-engine"
 echo "✓ Engine bundle copied to $APP_PATH/Contents/Resources/miniflow-engine/"
 
-# Re-sign the entire .app bundle after adding the engine to Resources.
-# (Copying files into Resources invalidates the xcodebuild signature,
-# so we must re-sign the whole bundle — not just the binary.)
+# Re-sign after adding the engine to Resources.
+# --deep breaks on PyInstaller .dist-info dirs, so we:
+#   1. Sign every Mach-O binary inside the PyInstaller bundle explicitly
+#   2. Sign the .app bundle (without --deep)
 ENTITLEMENTS="$SCRIPT_DIR/MiniflowApp/MiniflowApp/MiniflowApp.entitlements"
+ENGINE_BUNDLE="$APP_PATH/Contents/Resources/miniflow-engine"
 if [ -n "${APPLE_TEAM_ID:-}" ]; then
+  echo "→ Signing Mach-O binaries in PyInstaller bundle..."
+  find "$ENGINE_BUNDLE" -type f \( -name "*.so" -o -name "*.dylib" -o -name "miniflow-engine" \) \
+    -exec codesign --force --sign "Developer ID Application" --options runtime {} \;
   echo "→ Signing .app bundle with Developer ID (hardened runtime)..."
-  codesign --force --deep --sign "Developer ID Application" \
+  codesign --force --sign "Developer ID Application" \
     --options runtime \
     --entitlements "$ENTITLEMENTS" \
     "$APP_PATH"
   echo "✓ App bundle signed with Developer ID"
 else
   echo "→ Re-signing .app bundle (ad-hoc)..."
-  codesign --force --deep --sign - "$APP_PATH"
+  codesign --force --sign - "$APP_PATH"
   echo "✓ App bundle re-signed (ad-hoc)"
 fi
 
