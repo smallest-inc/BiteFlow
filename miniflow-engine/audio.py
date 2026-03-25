@@ -42,6 +42,7 @@ async def stream_transcribe(
     final_transcript = ""
     last_text = ""
     t0 = time.perf_counter()
+    finalize_sent = asyncio.Event()
 
     # ping_interval keeps connection alive during long recordings (up to ~60s+)
     async with websockets.connect(
@@ -57,6 +58,7 @@ async def stream_transcribe(
                 chunk = await chunk_queue.get()
                 if chunk is None:  # sentinel — send finalize signal to server
                     await ws.send(json.dumps({"type": "finalize"}))
+                    finalize_sent.set()
                     return
                 await ws.send(chunk)
 
@@ -71,6 +73,7 @@ async def stream_transcribe(
                         continue
                     # full_transcript accumulates all segments; transcript is just the current one
                     text = data.get("full_transcript") or data.get("transcript") or ""
+                    is_final = data.get("is_final", False)
                     is_last = data.get("is_last", False)
                     if text:
                         last_text = text
@@ -79,7 +82,10 @@ async def stream_transcribe(
                     if is_last:
                         final_transcript = last_text
                         break
-                    # is_final=true means a segment finalized — keep listening for more
+                    # Only break on is_final after finalize has been sent (avoids mid-stream cutoff)
+                    if is_final and finalize_sent.is_set():
+                        final_transcript = last_text
+                        break
             except websockets.exceptions.ConnectionClosed:
                 pass  # connection closed — fallback to last_text below
 

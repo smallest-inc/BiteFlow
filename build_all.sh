@@ -116,11 +116,15 @@ ENTITLEMENTS="$SCRIPT_DIR/MiniflowApp/MiniflowApp/MiniflowApp.entitlements"
 ENGINE_BUNDLE="$APP_PATH/Contents/Resources/miniflow-engine"
 if [ -n "${APPLE_TEAM_ID:-}" ]; then
   echo "→ Signing Mach-O binaries in PyInstaller bundle..."
-  find "$ENGINE_BUNDLE" -type f \( -name "*.so" -o -name "*.dylib" -o -name "miniflow-engine" \) \
-    -exec codesign --force --sign "Developer ID Application" --options runtime {} \;
+  # Sign all Mach-O binaries: .so, .dylib, executables (no extension), and Python framework binary
+  find "$ENGINE_BUNDLE" -type f \( -name "*.so" -o -name "*.dylib" \) \
+    -exec codesign --force --sign "Developer ID Application" --options runtime --timestamp {} \;
+  find "$ENGINE_BUNDLE" -type f -perm +0111 ! -name "*.py" ! -name "*.txt" ! -name "*.cfg" \
+    -exec codesign --force --sign "Developer ID Application" --options runtime --timestamp {} \; 2>/dev/null || true
   echo "→ Signing .app bundle with Developer ID (hardened runtime)..."
   codesign --force --sign "Developer ID Application" \
     --options runtime \
+    --timestamp \
     --entitlements "$ENTITLEMENTS" \
     "$APP_PATH"
   echo "✓ App bundle signed with Developer ID"
