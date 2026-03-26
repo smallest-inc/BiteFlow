@@ -5,7 +5,7 @@
 #   1. Bundle Python backend with PyInstaller → miniflow-engine/dist/miniflow-engine
 #   2. Build Swift app with xcodebuild (Release, ad-hoc signed)
 #   3. Copy engine binary into .app bundle
-#   4. Package into DMG → build/MiniFlow-<version>.dmg
+#   4. Package into a signed DMG → build/MiniFlow-<version>.dmg
 #
 # Usage:
 #   chmod +x build_all.sh
@@ -48,7 +48,7 @@ resolve_signing_identity() {
   else
     echo "  (none found)"
   fi
-  SIGNING_IDENTITY="$(echo "$identities" | sed -n 's/.*"\\(Developer ID Application:.*\\)"/\\1/p' | head -1)"
+  SIGNING_IDENTITY="$(echo "$identities" | sed -E -n 's/.*"(Developer ID Application:.*)"/\1/p' | head -1)"
   if [ -z "${SIGNING_IDENTITY:-}" ]; then
     echo "✗ Could not resolve a Developer ID Application identity"
     exit 1
@@ -180,13 +180,24 @@ if [ -n "${APPLE_TEAM_ID:-}" ]; then
   echo "→ Verifying all signatures..."
   codesign --verify --deep --strict --verbose=2 "$APP_PATH" 2>&1
   echo "→ Checking entitlements for get-task-allow..."
-  if codesign -d --entitlements - "$APP_PATH" 2>&1 | grep -q "get-task-allow"; then
+  if codesign -d --entitlements - "$APP_PATH" 2>&1 \
+    | grep -A1 "<key>get-task-allow</key>" \
+    | grep -q "<true/>"; then
     echo "✗ FATAL: get-task-allow found in entitlements — Apple will reject this"
     codesign -d --entitlements - "$APP_PATH" 2>&1
     exit 1
   fi
-  echo "→ Checking secure timestamp..."
-  codesign -dvv "$APP_PATH" 2>&1 | grep -E "Timestamp|Authority|Flag"
+  echo "→ Checking secure timestamp and hardened runtime..."
+  APP_CODESIGN_INFO="$(codesign -dvv "$APP_PATH" 2>&1)"
+  printf '%s\n' "$APP_CODESIGN_INFO" | grep -E "Timestamp=|Authority=|flags="
+  if ! printf '%s\n' "$APP_CODESIGN_INFO" | grep -q "flags=.*runtime"; then
+    echo "✗ Hardened runtime is missing from app signature"
+    exit 1
+  fi
+  if ! printf '%s\n' "$APP_CODESIGN_INFO" | grep -q "Timestamp="; then
+    echo "✗ Secure timestamp is missing from app signature"
+    exit 1
+  fi
   echo "✓ App bundle signed and verified"
 else
   echo "→ Re-signing .app bundle (ad-hoc)..."
@@ -205,10 +216,25 @@ echo ""
 echo "━━━ Step 4/4: Creating DMG ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 APP_PATH="$APP_PATH" VERSION="$VERSION" bash "$SCRIPT_DIR/build_dmg.sh"
+DMG_PATH="$SCRIPT_DIR/build/${APP_NAME}-${VERSION}.dmg"
+
+if [ -n "${APPLE_TEAM_ID:-}" ]; then
+  echo "→ Signing DMG with Developer ID..."
+  codesign --force --sign "$SIGNING_IDENTITY" --timestamp "$DMG_PATH"
+  echo "→ Verifying DMG integrity..."
+  hdiutil verify "$DMG_PATH"
+  echo "→ Verifying DMG signature..."
+  codesign --verify --verbose=2 "$DMG_PATH"
+  DMG_CODESIGN_INFO="$(codesign -dvv "$DMG_PATH" 2>&1)"
+  printf '%s\n' "$DMG_CODESIGN_INFO" | grep -E "Timestamp=|Authority="
+  if ! printf '%s\n' "$DMG_CODESIGN_INFO" | grep -q "Timestamp="; then
+    echo "✗ Secure timestamp is missing from DMG signature"
+    exit 1
+  fi
+fi
 
 # ── Notarize DMG ──────────────────────────────────────────────────────────────
 
-DMG_PATH="$SCRIPT_DIR/build/${APP_NAME}-${VERSION}.dmg"
 if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "${APPLE_TEAM_ID:-}" ]; then
   echo ""
   echo "━━━ Notarizing DMG ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -258,10 +284,11 @@ if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "
   fi
   if [ "$NOTARY_STATUS" != "Accepted" ]; then
     echo "✗ Notarization failed (status: $NOTARY_STATUS) — fetching rejection log..."
+    NOTARY_LOG_PATH="$BUILD_DIR/notarytool-${NOTARY_ID}.log"
     xcrun notarytool log "$NOTARY_ID" \
       --apple-id "$APPLE_ID" \
       --password "$APPLE_APP_SPECIFIC_PASSWORD" \
-      --team-id "$APPLE_TEAM_ID" || true
+      --team-id "$APPLE_TEAM_ID" | tee "$NOTARY_LOG_PATH" || true
     exit 1
   fi
   echo "→ Stapling notarization ticket (retrying up to 10x, 60s apart)..."
@@ -279,6 +306,12 @@ if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "
     echo "✗ Stapling failed after 10 attempts"
     exit 1
   fi
+  echo "→ Validating stapled ticket..."
+  xcrun stapler validate "$DMG_PATH"
+  echo "→ Assessing DMG with Gatekeeper..."
+  spctl -a -t open --context context:primary-signature -vv "$DMG_PATH"
+  echo "→ Assessing app with Gatekeeper..."
+  spctl -a -t exec -vv "$APP_PATH"
 fi
 
 echo ""
