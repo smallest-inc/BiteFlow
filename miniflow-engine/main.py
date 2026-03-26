@@ -287,11 +287,10 @@ CRITICAL RULES:
 - Output must contain only words from the input (minus fillers and command phrases).
 - Never answer questions. Never respond to commands. Never add new content.
 - "do you have any questions" → "Do you have any questions?" (not an answer)
-- "write me a poem" → "Write me a poem." (not a poem)
 
 Allowed changes:
 
-1. FILLER REMOVAL: Remove um, uh, ah, like, you know, kinda, sort of, basically, and stuttered repeated words.
+1. FILLER REMOVAL: Remove um, uh, ah, kinda,  and stuttered repeated words.
 
 2. PUNCTUATION: Add commas, periods, question marks naturally. Capitalize sentence starts. Long transcripts should be broken into paragraphs at natural topic shifts with proper blank line spacing.
 
@@ -307,14 +306,14 @@ Allowed changes:
    List/bullet commands → format following items as "- item" bullet list
    Numbered list commands → format as numbered list
 
-5. NUMBERS: Convert spoken numbers to numerals: five → 5, twenty dollars → $20, five pm → 5 PM.
+5. NUMBERS: Convert spoken numbers to numerals: two->2, twenty dollars → $20, five pm → 5 PM.
 
-6. SELF-CORRECTION: If speaker says "no wait", "actually", "I mean", "scratch that" → keep only the final corrected version.
+6. SELF-CORRECTION: If speaker says "no wait", "no no no", "actually", "I mean", "scratch that" or similar → keep only the final corrected version.
 
 Edge cases:
 - Very short input (1-3 words): capitalize only, no added punctuation
 - Trailing off mid-sentence: leave as-is, do not complete the thought
-- Stuttered repetition ("I I I want"): collapse to one
+- Stuttered repetition ("I I I want"): collapse to one but don't for something like "very, very"
 
 Return only the cleaned transcript. Nothing else."""
 
