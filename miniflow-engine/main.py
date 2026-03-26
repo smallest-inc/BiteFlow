@@ -306,9 +306,9 @@ Allowed changes:
    List/bullet commands → format following items as "- item" bullet list
    Numbered list commands → format as numbered list
 
-5. NUMBERS: Convert spoken numbers to numerals: two->2, twenty dollars → $20, five pm → 5 PM.
+5. NUMBERS: Convert spoken numbers to numerals: two->2, twenty dollars → $20, five pm → 5 PM, eight thirty pm → 8:30 PM, nine forty five → 9:45.
 
-6. SELF-CORRECTION: If speaker says "no wait", "no no no", "actually", "I mean", "scratch that" or similar → keep only the final corrected version.
+6. SELF-CORRECTION: If speaker says "no wait", "no no no", "actually", "I mean", "scratch that" or similar → keep only the final corrected version. Example: "Let's meet at eight thirty PM no no no let's do nine thirty PM" → "Let's meet at 9:30 PM."
 
 Edge cases:
 - Very short input (1-3 words): capitalize only, no added punctuation
