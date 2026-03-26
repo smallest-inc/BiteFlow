@@ -125,20 +125,21 @@ if [ -n "${APPLE_TEAM_ID:-}" ]; then
     ! -path "*.framework/*" \
     -exec codesign --force --sign "Developer ID Application" --options runtime --timestamp {} \; 2>/dev/null || true
   # 3. Sign .framework bundles (handles inner binaries + CodeResources properly)
-  find "$ENGINE_BUNDLE" -name "*.framework" -type d | while read fw; do
+  #    Use -depth so nested frameworks are signed before their parents
+  find "$ENGINE_BUNDLE" -name "*.framework" -type d -depth | while read fw; do
+    echo "  signing framework: $fw"
     codesign --force --sign "Developer ID Application" --options runtime --timestamp "$fw"
   done
-  # 4. Sign the .app bundle last — preserves all nested signatures
+  # 4. Sign the .app bundle last (no --deep, we already signed everything inside)
   echo "→ Signing .app bundle with Developer ID (hardened runtime)..."
   codesign --force --sign "Developer ID Application" \
     --options runtime \
     --timestamp \
     --entitlements "$ENTITLEMENTS" \
-    --deep \
     "$APP_PATH"
-  # Verify the signature is valid before proceeding
-  echo "→ Verifying signature..."
-  codesign --verify --deep --strict "$APP_PATH" 2>&1
+  # Verify every nested signature is valid before submitting to Apple
+  echo "→ Verifying all signatures..."
+  codesign --verify --deep --strict --verbose=2 "$APP_PATH" 2>&1
   echo "✓ App bundle signed and verified"
 else
   echo "→ Re-signing .app bundle (ad-hoc)..."
