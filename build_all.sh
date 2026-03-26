@@ -15,7 +15,6 @@
 #   VERSION=0.2.0   (default: read from pbxproj MARKETING_VERSION)
 #   SKIP_BACKEND=1  (skip PyInstaller step if already built)
 #   CONFIG=Debug    (default: Release)
-#   NOTARY_TIMEOUT_MINUTES=60  (default: 60)
 #   NOTARY_POLL_SECONDS=30     (default: 30)
 
 set -euo pipefail
@@ -259,12 +258,10 @@ if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "
     echo "✗ Failed to submit — no submission ID received"
     exit 1
   fi
-  NOTARY_TIMEOUT_MINUTES="${NOTARY_TIMEOUT_MINUTES:-60}"
   NOTARY_POLL_SECONDS="${NOTARY_POLL_SECONDS:-30}"
-  echo "→ Submission ID: $NOTARY_ID — polling for result (timeout: ${NOTARY_TIMEOUT_MINUTES} min)..."
-  DEADLINE=$((SECONDS + (NOTARY_TIMEOUT_MINUTES * 60)))
+  echo "→ Submission ID: $NOTARY_ID — polling for result (no timeout, will poll until done)..."
   NOTARY_STATUS=""
-  while [ $SECONDS -lt $DEADLINE ]; do
+  while true; do
     WAIT_OUTPUT=$(xcrun notarytool info "$NOTARY_ID" \
       --apple-id "$APPLE_ID" \
       --password "$APPLE_APP_SPECIFIC_PASSWORD" \
@@ -277,11 +274,6 @@ if [ -n "${APPLE_ID:-}" ] && [ -n "${APPLE_APP_SPECIFIC_PASSWORD:-}" ] && [ -n "
     sleep "$NOTARY_POLL_SECONDS"
   done
   echo "→ Notarization result: id=$NOTARY_ID status=$NOTARY_STATUS"
-  if [ "$NOTARY_STATUS" = "In Progress" ] || [ -z "$NOTARY_STATUS" ]; then
-    echo "✗ Notarization timed out after ${NOTARY_TIMEOUT_MINUTES} minutes while Apple still reported: ${NOTARY_STATUS:-unknown}"
-    echo "  The submission may still finish later; this is not the same as a rejection."
-    exit 1
-  fi
   if [ "$NOTARY_STATUS" != "Accepted" ]; then
     echo "✗ Notarization failed (status: $NOTARY_STATUS) — fetching rejection log..."
     NOTARY_LOG_PATH="$BUILD_DIR/notarytool-${NOTARY_ID}.log"
