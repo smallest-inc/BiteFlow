@@ -19,7 +19,6 @@ final class AgentViewModel: ObservableObject {
 
     @Published var lastResultAction: ActionResult?
     @Published var totalWordsTranscribed: Int = 0
-    @Published var averageWpm: Int = 0
 
     private let api = APIClient.shared
     private let events = EventStream.shared
@@ -50,6 +49,13 @@ final class AgentViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+        events.$partialTranscript
+            .receive(on: RunLoop.main)
+            .sink { [weak self] partial in
+                if !partial.isEmpty { self?.transcript = partial }
+            }
+            .store(in: &cancellables)
+
         events.$lastActionResult
             .compactMap { $0 }
             .receive(on: RunLoop.main)
@@ -71,23 +77,19 @@ final class AgentViewModel: ObservableObject {
     func loadHistory() async {
         if let entries: [HistoryEntry] = try? await api.invoke("get_history") {
             history = entries
+            // Seed total words from history if never set
+            if UserDefaults.standard.object(forKey: "mf_total_words_ever") == nil && !history.isEmpty {
+                let historyCount = history.reduce(0) { acc, entry in
+                    acc + entry.transcript.split(separator: " ").count
+                }
+                UserDefaults.standard.set(historyCount, forKey: "mf_total_words_ever")
+            }
             recomputeStats()
         }
     }
 
     private func recomputeStats() {
-        // Seed from history if the UserDefaults key has never been written
-        if UserDefaults.standard.object(forKey: "mf_total_words_ever") == nil && !history.isEmpty {
-            let historyCount = history.reduce(0) { acc, entry in
-                acc + entry.transcript.split(separator: " ").count
-            }
-            UserDefaults.standard.set(historyCount, forKey: "mf_total_words_ever")
-        }
         totalWordsTranscribed = UserDefaults.standard.integer(forKey: "mf_total_words_ever")
-        let totalSeconds = UserDefaults.standard.double(forKey: "mf_total_speaking_seconds")
-        if totalSeconds > 0 && totalWordsTranscribed > 0 {
-            averageWpm = Int(Double(totalWordsTranscribed) / totalSeconds * 60.0)
-        }
     }
 
     func loadUserName() async {
@@ -135,6 +137,11 @@ final class AgentViewModel: ObservableObject {
         }
 
         do {
+            // Start streaming session before capture so no chunks are missed
+            events.startTranscription(bundleID: targetBundleID)
+            audio.onChunk = { [weak self] pcm in
+                self?.events.sendAudioChunk(pcm)
+            }
             try audio.startCapture()
         } catch {
             isListening = false
@@ -146,36 +153,36 @@ final class AgentViewModel: ObservableObject {
         guard isListening else { return }
         isListening = false
         keyReleaseTime = Date()
-
-        let wavData = audio.stopCaptureAndGetWav()
-        guard !wavData.isEmpty else { return }
+        audio.onChunk = nil
 
         if let start = listeningStartTime, let release = keyReleaseTime {
             lastAudioLengthSecs = release.timeIntervalSince(start)
         }
 
+        audio.stopCapture()
+
         do {
-            var body: [String: Any] = ["audio": wavData.base64EncodedString()]
-            if let bundleID = targetBundleID { body["bundleID"] = bundleID }
+            // STT was happening in real-time — stopTranscription just signals end
+            // and waits for the final formatted result (GPT formatter time only)
             let sttStart = Date()
-            let result: [String: String] = try await api.invoke("transcribe_audio", body: body)
+            let fullText = try await events.stopTranscription()
+                .trimmingCharacters(in: .whitespaces)
             lastSttMs = Int(Date().timeIntervalSince(sttStart) * 1000)
-            let fullText = (result["transcript"] ?? "").trimmingCharacters(in: .whitespaces)
             transcript = fullText
             if !fullText.isEmpty {
-                // Accumulate word count (never resets on Clear All)
+                // Total words — always accumulates, never resets
                 let wordCount = fullText.split(separator: " ").count
                 let prevWords = UserDefaults.standard.integer(forKey: "mf_total_words_ever")
                 UserDefaults.standard.set(prevWords + wordCount, forKey: "mf_total_words_ever")
                 totalWordsTranscribed = prevWords + wordCount
 
-                // Accumulate speaking time for WPM calculation
-                if let start = listeningStartTime {
-                    let duration = max(Date().timeIntervalSince(start), 1.0)
-                    let prev = UserDefaults.standard.double(forKey: "mf_total_speaking_seconds")
-                    UserDefaults.standard.set(prev + duration, forKey: "mf_total_speaking_seconds")
-                }
-                await executeCommand(fullText)
+                recomputeStats()
+                // Skip the execute_command round-trip — history is saved
+                // in transcribe_audio and the text is always plain dictation.
+                let ar = ActionResult(action: "dictation", success: true, message: fullText)
+                actions = [ar] + actions
+                lastResultAction = ar
+                await handleLocalDictationIfNeeded([ar])
             }
             listeningStartTime = nil
         } catch {
@@ -273,13 +280,11 @@ final class AgentViewModel: ObservableObject {
                 return
             }
 
+            // Re-activate the target app before pasting — by the time STT +
+            // formatting finish, MiniFlow's panel may have stolen focus.
             if let bundleID {
                 activateTargetApp(bundleID)
-                // Wait for the app to come to front — poll until it's frontmost or timeout
-                for _ in 0..<20 {
-                    try? await Task.sleep(nanoseconds: 50_000_000) // 50ms
-                    if NSWorkspace.shared.frontmostApplication?.bundleIdentifier == bundleID { break }
-                }
+                try? await Task.sleep(nanoseconds: 100_000_000) // let the app come forward
             }
 
             await typeTextLocally(text)
@@ -291,7 +296,7 @@ final class AgentViewModel: ObservableObject {
             │  Fn release → screen : \(totalMs)ms
             └────────────────────────────────────────────
             """)
-            axLog("handleLocalDictation: typed via CGEvent")
+            axLog("handleLocalDictation: paste complete")
             return
         }
 
@@ -317,41 +322,29 @@ final class AgentViewModel: ObservableObject {
     private func typeTextLocally(_ text: String) async {
         guard !text.isEmpty else { return }
 
-        // Try AXUIElement first — inserts text directly at cursor, handles newlines natively
-        if insertTextViaAX(text) {
-            axLog("typeTextLocally: inserted via AXUIElement (\(text.count) chars)")
-            return
-        }
-
-        // Fallback: clipboard paste via Cmd+V
-        axLog("typeTextLocally: AX failed, falling back to Cmd+V")
         let pasteboard = NSPasteboard.general
         let previous = pasteboard.string(forType: .string)
         pasteboard.clearContents()
         pasteboard.setString(text, forType: .string)
 
-        if let source = CGEventSource(stateID: .hidSystemState),
-           let down = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: true),
-           let up   = CGEvent(keyboardEventSource: source, virtualKey: 0x09, keyDown: false) {
-            down.flags = .maskCommand
-            up.flags   = .maskCommand
-            down.post(tap: .cghidEventTap)
-            up.post(tap: .cghidEventTap)
+        // CGEvent Cmd+V — only needs Accessibility permission
+        let src = CGEventSource(stateID: .hidSystemState)
+        let kVK_V: CGKeyCode = 0x09
+        guard let down = CGEvent(keyboardEventSource: src, virtualKey: kVK_V, keyDown: true),
+              let up = CGEvent(keyboardEventSource: src, virtualKey: kVK_V, keyDown: false) else {
+            axLog("typeTextLocally: failed to create CGEvent")
+            return
         }
+        down.flags = .maskCommand
+        up.flags = .maskCommand
+        down.post(tap: .cghidEventTap)
+        up.post(tap: .cghidEventTap)
+        axLog("typeTextLocally: pasted via Cmd+V (\(text.count) chars)")
 
+        // Restore previous clipboard
         try? await Task.sleep(nanoseconds: 150_000_000)
         pasteboard.clearContents()
         if let previous { pasteboard.setString(previous, forType: .string) }
-    }
-
-    private func insertTextViaAX(_ text: String) -> Bool {
-        let systemWide = AXUIElementCreateSystemWide()
-        var focusedElement: CFTypeRef?
-        guard AXUIElementCopyAttributeValue(systemWide, kAXFocusedUIElementAttribute as CFString, &focusedElement) == .success else {
-            return false
-        }
-        let element = focusedElement as! AXUIElement
-        return AXUIElementSetAttributeValue(element, kAXSelectedTextAttribute as CFString, text as CFTypeRef) == .success
     }
 
 }

@@ -9,6 +9,9 @@ final class AudioCaptureService {
     private var isRunning = false
     private var accumulatedPCM = Data()
 
+    /// Called with each ~100ms PCM chunk as it's captured (for streaming)
+    var onChunk: ((Data) -> Void)?
+
     private init() {
         // When the user changes audio device (plug/unplug headphones, switch input),
         // AVAudioEngine stops automatically. Restart capture so audio keeps flowing.
@@ -75,6 +78,7 @@ final class AudioCaptureService {
         guard let converted = convert(buffer, from: nativeFormat, to: format) else { return }
         guard let data = pcmData(from: converted) else { return }
         accumulatedPCM.append(data)
+        onChunk?(data)
     }
 
     // MARK: - WAV encoding

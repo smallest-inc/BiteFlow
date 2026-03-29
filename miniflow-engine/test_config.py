@@ -114,13 +114,13 @@ class TestApiKeyContracts:
 
     def test_07_has_api_keys_both_absent_returns_none_values(self, cfg):
         result = cfg.has_api_keys()
-        assert result.get("openai") is None
+        assert result.get("groq") is None
         assert result.get("smallest") is None
 
-    def test_08_has_api_keys_openai_present(self, cfg):
-        cfg.save_api_key("openai", "o-key")
+    def test_08_has_api_keys_groq_present(self, cfg):
+        cfg.save_api_key("groq", "o-key")
         result = cfg.has_api_keys()
-        assert result.get("openai") == "o-key"
+        assert result.get("groq") == "o-key"
 
     def test_09_has_api_keys_smallest_present(self, cfg):
         cfg.save_api_key("smallest", "s-key")
@@ -155,16 +155,16 @@ class TestApiKeyContracts:
         assert cfg.get_api_key("openai") == key
 
     def test_16_has_api_keys_reflects_saved_keys(self, cfg):
-        cfg.save_api_key("openai", "o")
+        cfg.save_api_key("groq", "o")
         cfg.save_api_key("smallest", "s")
         result = cfg.has_api_keys()
-        assert result["openai"] == "o"
+        assert result["groq"] == "o"
         assert result["smallest"] == "s"
 
     def test_17_saving_new_key_does_not_affect_has_api_keys_structure(self, cfg):
-        cfg.save_api_key("openai", "o")
+        cfg.save_api_key("groq", "o")
         result = cfg.has_api_keys()
-        assert "openai" in result
+        assert "groq" in result
         assert "smallest" in result  # key should still appear (as None)
 
     def test_18_get_api_key_returns_exact_value(self, cfg):
@@ -183,9 +183,9 @@ class TestApiKeyContracts:
         assert cfg.get_language() == "fr"
 
     def test_21_has_api_keys_after_overwrite(self, cfg):
-        cfg.save_api_key("openai", "old")
-        cfg.save_api_key("openai", "new")
-        assert cfg.has_api_keys()["openai"] == "new"
+        cfg.save_api_key("groq", "old")
+        cfg.save_api_key("groq", "new")
+        assert cfg.has_api_keys()["groq"] == "new"
 
     def test_22_whitespace_only_key_is_stored_as_is(self, cfg):
         # Whitespace-only key is stored verbatim; callers are responsible for validation

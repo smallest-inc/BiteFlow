@@ -89,8 +89,8 @@ def type_text(text: str):
         Quartz.CGEventPost(Quartz.kCGHIDEventTap, down)
         Quartz.CGEventPost(Quartz.kCGHIDEventTap, up)
 
-        # Wait briefly for the paste to land, then restore
-        time.sleep(0.1)
+        # Brief wait for paste to land, then restore
+        time.sleep(0.15)
         pb.clearContents()
         if prev is not None:
             pb.setString_forType_(prev, AppKit.NSPasteboardTypeString)

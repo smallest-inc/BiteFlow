@@ -18,8 +18,7 @@ struct HomeTab: View {
 
                     Spacer()
 
-                    statPill(value: vm.totalWordsTranscribed == 0 ? "0" : "\(vm.totalWordsTranscribed)",
-                             label: "words")
+                    statPill(value: "\(vm.totalWordsTranscribed)", label: "words")
                 }
 
                 // Fn hint card

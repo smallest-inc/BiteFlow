@@ -61,7 +61,7 @@ struct SettingsTab: View {
     // MARK: - API Keys
 
     @State private var smallestSaveState: SaveState = .idle
-    @State private var openaiSaveState: SaveState = .idle
+    @State private var groqSaveState: SaveState = .idle
     enum SaveState { case idle, saving, saved, error }
 
     private var apiKeysSection: some View {
@@ -85,19 +85,19 @@ struct SettingsTab: View {
             }
             settingsCard {
                 VStack(alignment: .leading, spacing: 12) {
-                    sectionLabel("OpenAI")
+                    sectionLabel("Groq")
                     HStack(spacing: 10) {
-                        SecureField("API Key", text: $vm.openaiKey)
+                        SecureField("API Key", text: $vm.groqKey)
                             .textFieldStyle(.roundedBorder)
                             .font(.system(size: 13))
-                            .onChange(of: vm.openaiKey) { _ in openaiSaveState = .idle }
-                        saveButton(state: openaiSaveState, disabled: vm.openaiKey.isEmpty) {
-                            openaiSaveState = .saving
-                            let ok = await vm.saveOpenAIKey()
-                            openaiSaveState = ok ? .saved : .error
+                            .onChange(of: vm.groqKey) { _ in groqSaveState = .idle }
+                        saveButton(state: groqSaveState, disabled: vm.groqKey.isEmpty) {
+                            groqSaveState = .saving
+                            let ok = await vm.saveGroqKey()
+                            groqSaveState = ok ? .saved : .error
                         }
                     }
-                    stateHint(state: openaiSaveState, hint: "Used for AI transcript formatting (GPT-4o mini).")
+                    stateHint(state: groqSaveState, hint: "Used for AI transcript formatting (Qwen3-32B).")
                 }
             }
         }

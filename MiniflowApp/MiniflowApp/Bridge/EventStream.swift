@@ -19,6 +19,9 @@ final class EventStream: ObservableObject {
     private var task: URLSessionWebSocketTask?
     private var reconnectWorkItem: DispatchWorkItem?
 
+    // Pending transcription continuations keyed by request ID
+    private var transcriptContinuations: [String: CheckedContinuation<String, Error>] = [:]
+
     private init() {}
 
     // MARK: - Connection
@@ -62,15 +65,77 @@ final class EventStream: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: item)
     }
 
+    // MARK: - Streaming transcription
+
+    @Published var partialTranscript: String = ""
+    private var activeSessionID: String?
+
+    func startTranscription(bundleID: String?) {
+        let sessionID = UUID().uuidString
+        activeSessionID = sessionID
+        partialTranscript = ""
+        sendMessage([
+            "type": "start_transcription",
+            "id": sessionID,
+            "bundleID": bundleID as Any,
+        ])
+    }
+
+    func sendAudioChunk(_ pcm: Data) {
+        guard let sessionID = activeSessionID else { return }
+        sendMessage([
+            "type": "audio_chunk",
+            "id": sessionID,
+            "data": pcm.base64EncodedString(),
+        ])
+    }
+
+    func stopTranscription() async throws -> String {
+        guard let sessionID = activeSessionID else {
+            throw URLError(.unknown)
+        }
+        activeSessionID = nil
+        sendMessage(["type": "stop_transcription", "id": sessionID])
+        return try await withCheckedThrowingContinuation { continuation in
+            transcriptContinuations[sessionID] = continuation
+        }
+    }
+
+    private func sendMessage(_ payload: [String: Any]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+              let text = String(data: data, encoding: .utf8) else { return }
+        task?.send(.string(text)) { _ in }
+    }
+
     // MARK: - Event dispatch
 
     private func dispatch(_ text: String) {
         guard
             let data = text.data(using: .utf8),
             let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let event = json["event"] as? String,
-            let payload = json["payload"]
+            let event = json["event"] as? String
         else { return }
+
+        // Partial transcript — update live display
+        if event == "partial_transcript",
+           let payload = json["payload"] as? [String: Any],
+           let text = payload["text"] as? String {
+            DispatchQueue.main.async { self.partialTranscript = text }
+            return
+        }
+
+        // Final transcript — resume the waiting continuation
+        if event == "transcript",
+           let reqID = json["id"] as? String,
+           let payload = json["payload"] as? [String: Any],
+           let transcript = payload["transcript"] as? String {
+            DispatchQueue.main.async { self.partialTranscript = "" }
+            let continuation = transcriptContinuations.removeValue(forKey: reqID)
+            continuation?.resume(returning: transcript)
+            return
+        }
+
+        guard let payload = json["payload"] else { return }
 
         DispatchQueue.main.async {
             switch event {

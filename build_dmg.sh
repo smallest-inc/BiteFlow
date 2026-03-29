@@ -46,36 +46,6 @@ mkdir -p "$DMG_DIR"
 cp -R "$APP_PATH" "$DMG_DIR/$APP_NAME.app"
 ln -s /Applications "$DMG_DIR/Applications"
 
-# Create a double-clickable installer script
-INSTALLER="$DMG_DIR/Install MiniFlow.command"
-cat > "$INSTALLER" << 'EOF'
-#!/usr/bin/env bash
-# Double-click this file to install MiniFlow.
-# Terminal will open and ask for your password once to bypass Gatekeeper.
-set -e
-
-DMG_DIR="$(cd "$(dirname "$0")" && pwd)"
-APP_SRC="$DMG_DIR/MiniFlow.app"
-APP_DEST="/Applications/MiniFlow.app"
-
-echo "Installing MiniFlow..."
-rm -rf "$APP_DEST"
-cp -R "$APP_SRC" "$APP_DEST"
-
-echo "Removing Gatekeeper quarantine (may ask for password)..."
-sudo xattr -dr com.apple.quarantine "$APP_DEST"
-sudo spctl --add --label "MiniFlow" "$APP_DEST" 2>/dev/null || true
-
-echo ""
-echo "✓ Done! MiniFlow is installed."
-echo ""
-echo "  NEXT STEP: Open System Settings → Privacy & Security → Accessibility"
-echo "  and enable MiniFlow so it can type text into other apps."
-echo ""
-open "$APP_DEST"
-EOF
-chmod +x "$INSTALLER"
-
 # ── Create DMG ────────────────────────────────────────────────────────────────
 
 echo "→ Creating DMG..."

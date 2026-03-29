@@ -12,8 +12,6 @@ import subprocess
 from datetime import datetime
 from typing import Callable, Any
 
-from openai import AsyncOpenAI
-
 import config
 import history
 import dictation as dictation_module
