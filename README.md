@@ -32,7 +32,7 @@
 
 - macOS Ventura 13.0 or later
 - Apple Silicon (arm64)
-- Smallest AI API key (get one from https://console.smallest.ai)
+- Smallest AI API key (get one from https://app.smallest.ai)
 
 ## Quick start
 
@@ -44,7 +44,7 @@ xattr -cr /Applications/MiniFlow.app && open /Applications/MiniFlow.app
 ```
 
 3. Grant Microphone and Accessibility permissions when prompted.
-4. Open Settings and add your Smallest AI API key from https://console.smallest.ai.
+4. Open Settings and add your Smallest AI API key from https://app.smallest.ai.
 
 Keys are stored locally in `~/miniflow/miniflow_keys.json`.
 
