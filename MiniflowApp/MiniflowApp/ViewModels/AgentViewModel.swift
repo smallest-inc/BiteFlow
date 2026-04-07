@@ -153,12 +153,14 @@ final class AgentViewModel: ObservableObject {
         guard isListening else { return }
         isListening = false
         keyReleaseTime = Date()
-        audio.onChunk = nil
 
         if let start = listeningStartTime, let release = keyReleaseTime {
             lastAudioLengthSecs = release.timeIntervalSince(start)
         }
 
+        // Keep capturing briefly after key release so the last word isn't clipped
+        try? await Task.sleep(nanoseconds: 150_000_000)
+        audio.onChunk = nil
         audio.stopCapture()
 
         do {
