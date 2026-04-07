@@ -1,0 +1,739 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F486E072F79FB9E00C3555D /* MiniFlowKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7F486E002F79FB9E00C3555D /* MiniFlowKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F486DCA2F79F7D500C3555D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F486DB42F79F7D400C3555D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F486DBB2F79F7D400C3555D;
+			remoteInfo = MiniFlow_iOS;
+		};
+		7F486DD42F79F7D500C3555D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F486DB42F79F7D400C3555D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F486DBB2F79F7D400C3555D;
+			remoteInfo = MiniFlow_iOS;
+		};
+		7F486E052F79FB9E00C3555D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F486DB42F79F7D400C3555D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F486DFF2F79FB9E00C3555D;
+			remoteInfo = MiniFlowKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7F486E082F79FB9E00C3555D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7F486E072F79FB9E00C3555D /* MiniFlowKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7F486DBC2F79F7D400C3555D /* MiniFlow_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniFlow_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F486DC92F79F7D500C3555D /* MiniFlow_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniFlow_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F486DD32F79F7D500C3555D /* MiniFlow_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniFlow_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F486E002F79FB9E00C3555D /* MiniFlowKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MiniFlowKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7F486DBE2F79F7D400C3555D /* MiniFlow_iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MiniFlow_iOS;
+			sourceTree = "<group>";
+		};
+		7F486DCC2F79F7D500C3555D /* MiniFlow_iOSTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MiniFlow_iOSTests;
+			sourceTree = "<group>";
+		};
+		7F486DD62F79F7D500C3555D /* MiniFlow_iOSUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MiniFlow_iOSUITests;
+			sourceTree = "<group>";
+		};
+		7F486E012F79FB9E00C3555D /* MiniFlowKeyboard */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MiniFlowKeyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F486DB92F79F7D400C3555D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DC62F79F7D500C3555D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DD02F79F7D500C3555D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DFD2F79FB9E00C3555D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F486DB32F79F7D400C3555D = {
+			isa = PBXGroup;
+			children = (
+				7F486DBE2F79F7D400C3555D /* MiniFlow_iOS */,
+				7F486DCC2F79F7D500C3555D /* MiniFlow_iOSTests */,
+				7F486DD62F79F7D500C3555D /* MiniFlow_iOSUITests */,
+				7F486E012F79FB9E00C3555D /* MiniFlowKeyboard */,
+				7F486DBD2F79F7D400C3555D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F486DBD2F79F7D400C3555D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F486DBC2F79F7D400C3555D /* MiniFlow_iOS.app */,
+				7F486DC92F79F7D500C3555D /* MiniFlow_iOSTests.xctest */,
+				7F486DD32F79F7D500C3555D /* MiniFlow_iOSUITests.xctest */,
+				7F486E002F79FB9E00C3555D /* MiniFlowKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F486DBB2F79F7D400C3555D /* MiniFlow_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F486DDD2F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOS" */;
+			buildPhases = (
+				7F486DB82F79F7D400C3555D /* Sources */,
+				7F486DB92F79F7D400C3555D /* Frameworks */,
+				7F486DBA2F79F7D400C3555D /* Resources */,
+				7F486E082F79FB9E00C3555D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F486E062F79FB9E00C3555D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F486DBE2F79F7D400C3555D /* MiniFlow_iOS */,
+			);
+			name = MiniFlow_iOS;
+			packageProductDependencies = (
+			);
+			productName = MiniFlow_iOS;
+			productReference = 7F486DBC2F79F7D400C3555D /* MiniFlow_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7F486DC82F79F7D500C3555D /* MiniFlow_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F486DE02F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOSTests" */;
+			buildPhases = (
+				7F486DC52F79F7D500C3555D /* Sources */,
+				7F486DC62F79F7D500C3555D /* Frameworks */,
+				7F486DC72F79F7D500C3555D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F486DCB2F79F7D500C3555D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F486DCC2F79F7D500C3555D /* MiniFlow_iOSTests */,
+			);
+			name = MiniFlow_iOSTests;
+			packageProductDependencies = (
+			);
+			productName = MiniFlow_iOSTests;
+			productReference = 7F486DC92F79F7D500C3555D /* MiniFlow_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7F486DD22F79F7D500C3555D /* MiniFlow_iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F486DE32F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOSUITests" */;
+			buildPhases = (
+				7F486DCF2F79F7D500C3555D /* Sources */,
+				7F486DD02F79F7D500C3555D /* Frameworks */,
+				7F486DD12F79F7D500C3555D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F486DD52F79F7D500C3555D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F486DD62F79F7D500C3555D /* MiniFlow_iOSUITests */,
+			);
+			name = MiniFlow_iOSUITests;
+			packageProductDependencies = (
+			);
+			productName = MiniFlow_iOSUITests;
+			productReference = 7F486DD32F79F7D500C3555D /* MiniFlow_iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		7F486DFF2F79FB9E00C3555D /* MiniFlowKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F486E0C2F79FB9E00C3555D /* Build configuration list for PBXNativeTarget "MiniFlowKeyboard" */;
+			buildPhases = (
+				7F486DFC2F79FB9E00C3555D /* Sources */,
+				7F486DFD2F79FB9E00C3555D /* Frameworks */,
+				7F486DFE2F79FB9E00C3555D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7F486E012F79FB9E00C3555D /* MiniFlowKeyboard */,
+			);
+			name = MiniFlowKeyboard;
+			packageProductDependencies = (
+			);
+			productName = MiniFlowKeyboard;
+			productReference = 7F486E002F79FB9E00C3555D /* MiniFlowKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F486DB42F79F7D400C3555D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					7F486DBB2F79F7D400C3555D = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					7F486DC82F79F7D500C3555D = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 7F486DBB2F79F7D400C3555D;
+					};
+					7F486DD22F79F7D500C3555D = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 7F486DBB2F79F7D400C3555D;
+					};
+					7F486DFF2F79FB9E00C3555D = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 7F486DB72F79F7D400C3555D /* Build configuration list for PBXProject "MiniFlow_iOS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F486DB32F79F7D400C3555D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7F486DBD2F79F7D400C3555D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F486DBB2F79F7D400C3555D /* MiniFlow_iOS */,
+				7F486DC82F79F7D500C3555D /* MiniFlow_iOSTests */,
+				7F486DD22F79F7D500C3555D /* MiniFlow_iOSUITests */,
+				7F486DFF2F79FB9E00C3555D /* MiniFlowKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F486DBA2F79F7D400C3555D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DC72F79F7D500C3555D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DD12F79F7D500C3555D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DFE2F79FB9E00C3555D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F486DB82F79F7D400C3555D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DC52F79F7D500C3555D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DCF2F79F7D500C3555D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F486DFC2F79FB9E00C3555D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F486DCB2F79F7D500C3555D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F486DBB2F79F7D400C3555D /* MiniFlow_iOS */;
+			targetProxy = 7F486DCA2F79F7D500C3555D /* PBXContainerItemProxy */;
+		};
+		7F486DD52F79F7D500C3555D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F486DBB2F79F7D400C3555D /* MiniFlow_iOS */;
+			targetProxy = 7F486DD42F79F7D500C3555D /* PBXContainerItemProxy */;
+		};
+		7F486E062F79FB9E00C3555D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F486DFF2F79FB9E00C3555D /* MiniFlowKeyboard */;
+			targetProxy = 7F486E052F79FB9E00C3555D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7F486DDB2F79F7D500C3555D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7F486DDC2F79F7D500C3555D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F486DDE2F79F7D500C3555D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiniFlow_iOS/MiniFlow_iOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UW4BNRV4Y4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MiniFlow-iOS-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is required essentially. ";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F486DDF2F79F7D500C3555D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MiniFlow_iOS/MiniFlow_iOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UW4BNRV4Y4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MiniFlow-iOS-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is required essentially. ";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7F486DE12F79F7D500C3555D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniFlow_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MiniFlow_iOS";
+			};
+			name = Debug;
+		};
+		7F486DE22F79F7D500C3555D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MiniFlow_iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MiniFlow_iOS";
+			};
+			name = Release;
+		};
+		7F486DE42F79F7D500C3555D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MiniFlow_iOS;
+			};
+			name = Debug;
+		};
+		7F486DE52F79F7D500C3555D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MiniFlow_iOS;
+			};
+			name = Release;
+		};
+		7F486E092F79FB9E00C3555D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MiniFlowKeyboard/MiniFlowKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UW4BNRV4Y4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiniFlowKeyboardInfo.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MiniFlowKeyboard;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOS.MiniFlowKeyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F486E0A2F79FB9E00C3555D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MiniFlowKeyboard/MiniFlowKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UW4BNRV4Y4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiniFlowKeyboardInfo.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MiniFlowKeyboard;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smallestai.MiniFlow-iOS.MiniFlowKeyboard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F486DB72F79F7D400C3555D /* Build configuration list for PBXProject "MiniFlow_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F486DDB2F79F7D500C3555D /* Debug */,
+				7F486DDC2F79F7D500C3555D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F486DDD2F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F486DDE2F79F7D500C3555D /* Debug */,
+				7F486DDF2F79F7D500C3555D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F486DE02F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F486DE12F79F7D500C3555D /* Debug */,
+				7F486DE22F79F7D500C3555D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F486DE32F79F7D500C3555D /* Build configuration list for PBXNativeTarget "MiniFlow_iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F486DE42F79F7D500C3555D /* Debug */,
+				7F486DE52F79F7D500C3555D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F486E0C2F79FB9E00C3555D /* Build configuration list for PBXNativeTarget "MiniFlowKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F486E092F79FB9E00C3555D /* Debug */,
+				7F486E0A2F79FB9E00C3555D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F486DB42F79F7D400C3555D /* Project object */;
+}
