@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
-# build_dmg.sh — Package MiniFlow.app into a distributable DMG.
+# build_dmg.sh — Package BiteFlow.app into a distributable DMG.
 #
 # Prerequisites:
 #   1. Build the Python backend: ./build_backend.sh
 #   2. Build the Swift .app in Xcode (Product -> Archive, or Product -> Build)
 #   3. Ensure engine bundle exists inside the app:
-#        build/MiniFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
+#        build/BiteFlow.app/Contents/Resources/biteflow-engine/biteflow-engine
 #
 # Usage:
 #   chmod +x build_dmg.sh
-#   APP_PATH=build/MiniFlow.app ./build_dmg.sh
+#   APP_PATH=build/BiteFlow.app ./build_dmg.sh
 #
 # Or override defaults:
-#   APP_PATH=/path/to/MiniFlow.app VERSION=0.2.0 ./build_dmg.sh
+#   APP_PATH=/path/to/BiteFlow.app VERSION=0.2.0 ./build_dmg.sh
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_NAME="MiniFlow"
+APP_NAME="BiteFlow"
 VERSION="${VERSION:-0.2.0}"
 APP_PATH="${APP_PATH:-$SCRIPT_DIR/build/$APP_NAME.app}"
 DMG_DIR="$SCRIPT_DIR/build/dmg_staging"
@@ -27,13 +27,13 @@ OUTPUT_DMG="$SCRIPT_DIR/build/${APP_NAME}-${VERSION}.dmg"
 
 if [ ! -d "$APP_PATH" ]; then
   echo "✗ App not found at: $APP_PATH"
-  echo "  Build MiniFlow.app in Xcode first, then set APP_PATH."
+  echo "  Build BiteFlow.app in Xcode first, then set APP_PATH."
   exit 1
 fi
 
-ENGINE_BINARY="$APP_PATH/Contents/Resources/miniflow-engine/miniflow-engine"
+ENGINE_BINARY="$APP_PATH/Contents/Resources/biteflow-engine/biteflow-engine"
 if [ ! -f "$ENGINE_BINARY" ]; then
-  echo "✗ miniflow-engine binary not found inside .app"
+  echo "✗ biteflow-engine binary not found inside .app"
   echo "  Run ./build_all.sh to build everything from scratch."
   exit 1
 fi

@@ -132,7 +132,7 @@ final class AgentViewModel: ObservableObject {
         errorMessage = nil
         guard engineReady else {
             isListening = false
-            errorMessage = "MiniFlow engine failed to start. Try relaunching the app."
+            errorMessage = "BiteFlow engine failed to start. Try relaunching the app."
             return
         }
 
@@ -272,16 +272,16 @@ final class AgentViewModel: ObservableObject {
             let bundleID = targetBundleID ?? NSWorkspace.shared.frontmostApplication?.bundleIdentifier
             let ownBundleID = Bundle.main.bundleIdentifier
 
-            // Don't type into MiniFlow itself — fall back to clipboard
+            // Don't type into BiteFlow itself — fall back to clipboard
             if bundleID == ownBundleID {
                 copyToClipboard(text)
-                axLog("handleLocalDictation: MiniFlow is frontmost, copied to clipboard")
+                axLog("handleLocalDictation: BiteFlow is frontmost, copied to clipboard")
                 errorMessage = "Text copied to clipboard (⌘V to paste) — switch to your app first."
                 return
             }
 
             // Re-activate the target app before pasting — by the time STT +
-            // formatting finish, MiniFlow's panel may have stolen focus.
+            // formatting finish, BiteFlow's panel may have stolen focus.
             if let bundleID {
                 activateTargetApp(bundleID)
                 try? await Task.sleep(nanoseconds: 100_000_000) // let the app come forward
@@ -355,9 +355,9 @@ private func axLog(_ message: String) {
     let ts = ISO8601DateFormatter.string(from: Date(), timeZone: .current,
                                           formatOptions: [.withTime, .withColonSeparatorInTime])
     let line = "[\(ts) Swift/AX] \(message)\n"
-    NSLog("MiniFlow AX: %@", message)
+    NSLog("BiteFlow AX: %@", message)
     let logURL = FileManager.default.homeDirectoryForCurrentUser
-        .appendingPathComponent("miniflow/miniflow.log")
+        .appendingPathComponent("biteflow/biteflow.log")
     if let handle = try? FileHandle(forWritingTo: logURL) {
         handle.seekToEndOfFile()
         handle.write(Data(line.utf8))

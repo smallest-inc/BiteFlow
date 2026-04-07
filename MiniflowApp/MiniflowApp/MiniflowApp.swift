@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MiniFlowApp: App {
+struct BiteFlowApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {

@@ -9,7 +9,7 @@ struct SidebarView: View {
 
             // Brand
             VStack(alignment: .leading, spacing: 5) {
-                Text("MiniFlow ™")
+                Text("BiteFlow ™")
                     .font(.system(size: 13, weight: .bold))
                     .foregroundStyle(Color.black)
                 Text("Turn your voice into polished text. Works in any site or app.")

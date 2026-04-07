@@ -8,7 +8,7 @@ To adapt to a new architecture:
   1. Update PipelineAdapter below to point at your new backend
   2. Run: python3 -m pytest test_dictation_quality.py -v
 
-Currently wired to: MiniFlow FastAPI engine on http://127.0.0.1:8765
+Currently wired to: BiteFlow FastAPI engine on http://127.0.0.1:8765
 Tests that require a live server are marked @pytest.mark.integration.
 Tests that only need the text pipeline run without any server.
 """

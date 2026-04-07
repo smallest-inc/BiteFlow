@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
-SHORTCUTS_FILE = Path.home() / "miniflow" / "shortcuts.json"
+SHORTCUTS_FILE = Path.home() / "biteflow" / "shortcuts.json"
 
 # ── In-memory cache ───────────────────────────────────────────────────────────
 # _refresh() always calls _read() on every apply() so unittest.mock patches

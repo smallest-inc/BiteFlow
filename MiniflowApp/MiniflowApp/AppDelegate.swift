@@ -57,7 +57,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         guard let button = statusItem.button else { return }
         button.image = NSImage(systemSymbolName: "waveform.circle.fill",
-                               accessibilityDescription: "MiniFlow")
+                               accessibilityDescription: "BiteFlow")
         button.image?.isTemplate = true
         statusItem.menu = buildMenu()
     }
@@ -65,7 +65,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func buildMenu() -> NSMenu {
         let menu = NSMenu()
 
-        let showItem = NSMenuItem(title: "Show MiniFlow",
+        let showItem = NSMenuItem(title: "Show BiteFlow",
                                   action: #selector(toggleMainWindow),
                                   keyEquivalent: "")
         showItem.target = self
@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         menu.addItem(.separator())
 
-        menu.addItem(withTitle: "Quit MiniFlow",
+        menu.addItem(withTitle: "Quit BiteFlow",
                      action: #selector(NSApplication.terminate(_:)),
                      keyEquivalent: "q")
         return menu
@@ -96,7 +96,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     : "waveform.circle.fill"
                 self?.statusItem.button?.image = NSImage(
                     systemSymbolName: name,
-                    accessibilityDescription: "MiniFlow"
+                    accessibilityDescription: "BiteFlow"
                 )
                 self?.statusItem.button?.image?.isTemplate = true
             }
@@ -111,7 +111,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered,
             defer: false
         )
-        win.title = "MiniFlow"
+        win.title = "BiteFlow"
         win.contentView = NSHostingView(rootView: MainWindowView(vm: agentVM))
         win.center()
         win.isReleasedWhenClosed = false
@@ -176,7 +176,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupHotkey() {
         HotkeyManager.shared.onPress = { [weak self] in
-            // Capture the frontmost app BEFORE MiniFlow steals focus
+            // Capture the frontmost app BEFORE BiteFlow steals focus
             let bundleID = NSWorkspace.shared.frontmostApplication?.bundleIdentifier
             Task { await self?.agentVM.startListening(targetApp: bundleID) }
         }
@@ -190,24 +190,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func launchEngineIfBundled() {
         let logURL = FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("miniflow/miniflow.log")
+            .appendingPathComponent("biteflow/biteflow.log")
         try? FileManager.default.createDirectory(
             at: logURL.deletingLastPathComponent(), withIntermediateDirectories: true)
 
-        // onedir layout: Contents/Resources/miniflow-engine/miniflow-engine
-        // legacy fallback: Contents/MacOS/miniflow-engine
+        // onedir layout: Contents/Resources/biteflow-engine/biteflow-engine
+        // legacy fallback: Contents/MacOS/biteflow-engine
         let resources = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources")
         let macOS = Bundle.main.bundleURL.appendingPathComponent("Contents/MacOS")
         let candidates = [
-            resources.appendingPathComponent("miniflow-engine/miniflow-engine"),
-            macOS.appendingPathComponent("miniflow-engine/miniflow-engine"),
-            macOS.appendingPathComponent("miniflow-engine"),
+            resources.appendingPathComponent("biteflow-engine/biteflow-engine"),
+            macOS.appendingPathComponent("biteflow-engine/biteflow-engine"),
+            macOS.appendingPathComponent("biteflow-engine"),
         ]
 
         guard let engineURL = candidates.first(where: {
             FileManager.default.isExecutableFile(atPath: $0.path)
         }) else {
-            appendToLog(logURL, "[Swift] ERROR: miniflow-engine binary not found in bundle\n")
+            appendToLog(logURL, "[Swift] ERROR: biteflow-engine binary not found in bundle\n")
             appendToLog(logURL, "[Swift] Searched: \(candidates.map(\.path).joined(separator: ", "))\n")
             return
         }
@@ -218,7 +218,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         try? FileManager.default.setAttributes(
             [.posixPermissions: 0o755], ofItemAtPath: engineURL.path)
 
-        // Avoid duplicate engine launches when another MiniFlow instance is
+        // Avoid duplicate engine launches when another BiteFlow instance is
         // already listening on localhost:8765.
         if isPortListening(8765) {
             appendToLog(logURL, "[Swift] Engine already listening on :8765, skipping launch\n")
@@ -233,8 +233,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // launchctl setenv SSL_CERT_FILE ".../cacert.pem"
         // launchctl setenv REQUESTS_CA_BUNDLE ".../cacert.pem"
         let certCandidates = [
-            resources.appendingPathComponent("miniflow-engine/_internal/certifi/cacert.pem"),
-            resources.appendingPathComponent("miniflow-engine/certifi/cacert.pem"),
+            resources.appendingPathComponent("biteflow-engine/_internal/certifi/cacert.pem"),
+            resources.appendingPathComponent("biteflow-engine/certifi/cacert.pem"),
         ]
         if let certURL = certCandidates.first(where: {
             FileManager.default.fileExists(atPath: $0.path)

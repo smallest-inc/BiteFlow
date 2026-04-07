@@ -71,7 +71,7 @@ struct HomeTab: View {
                             .foregroundStyle(Color.black)
                     }
 
-                    Text("Speak naturally  –  MiniFlow transcribes and executes your voice commands in any app")
+                    Text("Speak naturally  –  BiteFlow transcribes and executes your voice commands in any app")
                         .font(.system(size: 13, weight: .regular))
                         .foregroundStyle(Color.textMuted)
                 }

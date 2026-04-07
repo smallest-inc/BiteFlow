@@ -1,7 +1,7 @@
 """
 pytest configuration — skip integration tests during normal runs.
 
-Integration tests require the MiniFlow engine to be running on port 8765.
+Integration tests require the BiteFlow engine to be running on port 8765.
 They are marked with @pytest.mark.integration and are skipped by default
 so builds never fail when the engine is offline.
 
@@ -23,7 +23,7 @@ def pytest_addoption(parser):
 def pytest_configure(config):
     config.addinivalue_line(
         "markers",
-        "integration: requires the MiniFlow engine to be running on port 8765",
+        "integration: requires the BiteFlow engine to be running on port 8765",
     )
 
 

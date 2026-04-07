@@ -1,17 +1,17 @@
-# MiniFlow Engineering (Swift + Smallest)
+# BiteFlow Engineering (Swift + Smallest)
 
 This repository is intentionally structured around a single runtime path:
 
-- `MiniflowApp/` - native macOS app (Swift/SwiftUI)
-- `miniflow-engine/` - local Python engine (FastAPI)
-- `miniflow-auth/` - OAuth proxy (Vercel, optional for integrations)
+- `BiteflowApp/` - native macOS app (Swift/SwiftUI)
+- `biteflow-engine/` - local Python engine (FastAPI)
+- `biteflow-auth/` - OAuth proxy (Vercel, optional for integrations)
 
 Legacy web/Tauri artifacts have been removed from the root to avoid split build paths.
 
 ## System Architecture
 
 ```text
-MiniflowApp (Swift)  <->  miniflow-engine (FastAPI on localhost:8765)
+BiteflowApp (Swift)  <->  biteflow-engine (FastAPI on localhost:8765)
                                   |
                                   +-> Smallest AI Waves (speech-to-text)
                                   +-> OpenAI (agent/tool orchestration)
@@ -52,13 +52,13 @@ Primary build path:
 
 DMG-only packaging (for an already built app):
 
-- `APP_PATH=build/MiniFlow.app ./build_dmg.sh`
+- `APP_PATH=build/BiteFlow.app ./build_dmg.sh`
 
 ## Source of Truth
 
 If docs conflict with code, treat these as canonical:
 
-- Runtime and UI behavior: `MiniflowApp/`
-- Engine API/events: `miniflow-engine/main.py`
-- STT provider behavior: `miniflow-engine/audio.py`
-- API key storage contract: `miniflow-engine/config.py`
+- Runtime and UI behavior: `BiteflowApp/`
+- Engine API/events: `biteflow-engine/main.py`
+- STT provider behavior: `biteflow-engine/audio.py`
+- API key storage contract: `biteflow-engine/config.py`

@@ -1,9 +1,9 @@
 # Build outputs
 build/
-miniflow-engine/dist/
-miniflow-engine/build/
-miniflow-engine/__pycache__/
-miniflow-engine/*.spec
+biteflow-engine/dist/
+biteflow-engine/build/
+biteflow-engine/__pycache__/
+biteflow-engine/*.spec
 **/__pycache__/
 **/*.pyc
 
@@ -24,15 +24,15 @@ dist/
 **/.DS_Store
 
 # Secrets / config (never commit API keys)
-miniflow/
+biteflow/
 oauth_clients.json
-miniflow_keys.json
+biteflow_keys.json
 *.env
 .env*
 
 # Python venvs
-miniflow-engine/.venv/
-miniflow-engine/venv/
+biteflow-engine/.venv/
+biteflow-engine/venv/
 
 # Claude internal docs
 .claude/
@@ -44,5 +44,5 @@ miniflow-engine/venv/
 .vscode/
 
 # Runtime files
-miniflow.log
+biteflow.log
 history.json

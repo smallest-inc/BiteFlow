@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# build_all.sh — Full build pipeline for MiniFlow.app
+# build_all.sh — Full build pipeline for BiteFlow.app
 #
 # Steps:
-#   1. Bundle Python backend with PyInstaller → miniflow-engine/dist/miniflow-engine
+#   1. Bundle Python backend with PyInstaller → biteflow-engine/dist/biteflow-engine
 #   2. Build Swift app with xcodebuild (Release, ad-hoc signed)
 #   3. Copy engine binary into .app bundle
-#   4. Package into a signed DMG → build/MiniFlow-<version>.dmg
+#   4. Package into a signed DMG → build/BiteFlow-<version>.dmg
 #
 # Usage:
 #   chmod +x build_all.sh
@@ -20,16 +20,16 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_NAME="MiniFlow"
-XCODE_PRODUCT_NAME="MiniflowApp"
-XCODE_PROJECT="$SCRIPT_DIR/MiniflowApp/MiniflowApp.xcodeproj"
-SCHEME="MiniflowApp"
+APP_NAME="BiteFlow"
+XCODE_PRODUCT_NAME="BiteflowApp"
+XCODE_PROJECT="$SCRIPT_DIR/BiteflowApp/BiteflowApp.xcodeproj"
+SCHEME="BiteflowApp"
 CONFIG="${CONFIG:-Release}"
 BUILD_DIR="$SCRIPT_DIR/build"
 BUILT_APP_PATH="$BUILD_DIR/$XCODE_PRODUCT_NAME.app"
 APP_PATH="$BUILD_DIR/$APP_NAME.app"
-ENGINE_DIST="$SCRIPT_DIR/miniflow-engine/dist/miniflow-engine"
-ENGINE_BINARY="$ENGINE_DIST/miniflow-engine"
+ENGINE_DIST="$SCRIPT_DIR/biteflow-engine/dist/biteflow-engine"
+ENGINE_BINARY="$ENGINE_DIST/biteflow-engine"
 
 resolve_signing_identity() {
   local identities
@@ -62,7 +62,7 @@ if [ -z "${VERSION:-}" ]; then
     | sed 's/.*= *//;s/;//;s/ *//')
 fi
 VERSION="${VERSION:-0.2.0}"
-echo "→ MiniFlow version: $VERSION  (config: $CONFIG)"
+echo "→ BiteFlow version: $VERSION  (config: $CONFIG)"
 
 # ── Step 1: Build Python backend ──────────────────────────────────────────────
 
@@ -70,7 +70,7 @@ if [ "${SKIP_BACKEND:-0}" = "1" ]; then
   echo "→ Skipping backend build (SKIP_BACKEND=1)"
   if [ ! -f "$ENGINE_BINARY" ]; then
     echo "✗ Engine binary not found at $ENGINE_BINARY"
-    echo "  Expected onedir layout: miniflow-engine/dist/miniflow-engine/miniflow-engine"
+    echo "  Expected onedir layout: biteflow-engine/dist/biteflow-engine/biteflow-engine"
     exit 1
   fi
 else
@@ -106,7 +106,7 @@ xcodebuild \
   CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
   clean build
 
-# Rename MiniflowApp.app → MiniFlow.app
+# Rename BiteflowApp.app → BiteFlow.app
 if [ -d "$BUILT_APP_PATH" ]; then
   rm -rf "$APP_PATH"
   mv "$BUILT_APP_PATH" "$APP_PATH"
@@ -125,21 +125,21 @@ echo "✓ Swift app built: $APP_PATH"
 echo ""
 echo "━━━ Step 3/4: Copying engine binary into .app ━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# Copy the entire onedir bundle into Contents/Resources/miniflow-engine/
+# Copy the entire onedir bundle into Contents/Resources/biteflow-engine/
 # (Resources, not MacOS — codesign does not try to sign Resources content,
 # avoiding failures on .dist-info dirs inside the PyInstaller bundle)
 mkdir -p "$APP_PATH/Contents/Resources"
-rm -rf "$APP_PATH/Contents/Resources/miniflow-engine"
-cp -R "$ENGINE_DIST" "$APP_PATH/Contents/Resources/miniflow-engine"
-chmod +x "$APP_PATH/Contents/Resources/miniflow-engine/miniflow-engine"
-echo "✓ Engine bundle copied to $APP_PATH/Contents/Resources/miniflow-engine/"
+rm -rf "$APP_PATH/Contents/Resources/biteflow-engine"
+cp -R "$ENGINE_DIST" "$APP_PATH/Contents/Resources/biteflow-engine"
+chmod +x "$APP_PATH/Contents/Resources/biteflow-engine/biteflow-engine"
+echo "✓ Engine bundle copied to $APP_PATH/Contents/Resources/biteflow-engine/"
 
 # Re-sign after adding the engine to Resources.
 # --deep breaks on PyInstaller .dist-info dirs, so we:
 #   1. Sign every Mach-O binary inside the PyInstaller bundle explicitly
 #   2. Sign the .app bundle (without --deep)
-ENTITLEMENTS="$SCRIPT_DIR/MiniflowApp/MiniflowApp/MiniflowApp.entitlements"
-ENGINE_BUNDLE="$APP_PATH/Contents/Resources/miniflow-engine"
+ENTITLEMENTS="$SCRIPT_DIR/BiteflowApp/BiteflowApp/BiteflowApp.entitlements"
+ENGINE_BUNDLE="$APP_PATH/Contents/Resources/biteflow-engine"
 if [ -n "${APPLE_TEAM_ID:-}" ]; then
   echo "→ Signing all code in PyInstaller bundle (inside-out)..."
   # 1. Sign all bare Mach-O files (.so, .dylib) — leaves out framework binaries

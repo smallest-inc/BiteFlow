@@ -1,6 +1,6 @@
 import Foundation
 
-/// HTTP client for the MiniFlow Python backend (http://127.0.0.1:8765).
+/// HTTP client for the BiteFlow Python backend (http://127.0.0.1:8765).
 /// All invoke calls are POST /invoke/:command with a JSON body.
 @MainActor
 final class APIClient {
@@ -27,7 +27,7 @@ final class APIClient {
 
         let (data, response) = try await URLSession.shared.data(for: req)
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw MiniFlowError.httpError((response as? HTTPURLResponse)?.statusCode ?? 0)
+            throw BiteFlowError.httpError((response as? HTTPURLResponse)?.statusCode ?? 0)
         }
         return try decoder.decode(T.self, from: data)
     }
@@ -44,7 +44,7 @@ final class APIClient {
         req.timeoutInterval = 30
         let (_, response) = try await URLSession.shared.data(for: req)
         guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw MiniFlowError.httpError((response as? HTTPURLResponse)?.statusCode ?? 0)
+            throw BiteFlowError.httpError((response as? HTTPURLResponse)?.statusCode ?? 0)
         }
     }
 
@@ -64,14 +64,14 @@ final class APIClient {
 
     private struct EmptyResponse: Decodable {}
 
-    enum MiniFlowError: LocalizedError {
+    enum BiteFlowError: LocalizedError {
         case httpError(Int)
         case backendNotRunning
 
         var errorDescription: String? {
             switch self {
             case .httpError(let code): return "Backend returned HTTP \(code)"
-            case .backendNotRunning:   return "MiniFlow engine failed to start. Try relaunching the app."
+            case .backendNotRunning:   return "BiteFlow engine failed to start. Try relaunching the app."
             }
         }
     }

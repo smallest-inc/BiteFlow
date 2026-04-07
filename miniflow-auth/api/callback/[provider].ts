@@ -102,7 +102,7 @@ export default async function handler(
 
     const encoded = encodePayload(tokenPayload);
 
-    // Redirect to the local MiniFlow callback server
+    // Redirect to the local BiteFlow callback server
     const localUrl = `http://localhost:${port}/callback?data=${encodeURIComponent(encoded)}&state=${encodeURIComponent(originalState)}`;
     res.redirect(302, localUrl);
   } catch (err: any) {

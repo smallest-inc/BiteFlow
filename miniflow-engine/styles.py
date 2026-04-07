@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-STYLES_FILE = Path.home() / "miniflow" / "styles.json"
+STYLES_FILE = Path.home() / "biteflow" / "styles.json"
 
 
 def _read() -> dict:

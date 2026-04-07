@@ -14,7 +14,7 @@ labels: [bug]
 
 ## Environment
 - macOS version:
-- MiniFlow version:
+- BiteFlow version:
 
 ## Logs
-Paste relevant lines from `~/miniflow/miniflow.log`.
+Paste relevant lines from `~/biteflow/biteflow.log`.

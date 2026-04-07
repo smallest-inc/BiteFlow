@@ -1,5 +1,5 @@
 """
-MiniFlow Engine — FastAPI backend
+BiteFlow Engine — FastAPI backend
 
 HTTP:      POST http://localhost:8765/invoke/:command
            GET  http://localhost:8765/health
@@ -32,7 +32,7 @@ import dictionary
 import shortcuts
 
 import pathlib
-_log_path = pathlib.Path.home() / "miniflow" / "miniflow.log"
+_log_path = pathlib.Path.home() / "biteflow" / "biteflow.log"
 _log_path.parent.mkdir(exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
@@ -73,11 +73,11 @@ manager = ConnectionManager()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    log.info("MiniFlow engine starting on http://localhost:8765")
+    log.info("BiteFlow engine starting on http://localhost:8765")
     dictation.set_event_broadcaster(manager.broadcast)
     agent.set_event_broadcaster(manager.broadcast)
     yield
-    log.info("MiniFlow engine shutting down")
+    log.info("BiteFlow engine shutting down")
 
 app = FastAPI(lifespan=lifespan)
 
@@ -100,7 +100,7 @@ async def health():
 _SUCCESS_HTML = """
 <!DOCTYPE html>
 <html>
-<head><title>MiniFlow — Connected</title>
+<head><title>BiteFlow — Connected</title>
 <style>
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
        display:flex;justify-content:center;align-items:center;
@@ -111,14 +111,14 @@ _SUCCESS_HTML = """
 </style></head>
 <body><div class="box">
   <h2>✓ Connected successfully</h2>
-  <p>You can close this window and return to MiniFlow.</p>
+  <p>You can close this window and return to BiteFlow.</p>
 </div></body></html>
 """
 
 _FAIL_HTML = """
 <!DOCTYPE html>
 <html>
-<head><title>MiniFlow — Error</title>
+<head><title>BiteFlow — Error</title>
 <style>
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
        display:flex;justify-content:center;align-items:center;

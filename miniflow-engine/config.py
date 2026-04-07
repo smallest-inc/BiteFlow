@@ -1,5 +1,5 @@
 """
-Config — reads/writes ~/miniflow/*.json
+Config — reads/writes ~/biteflow/*.json
 Same file paths as the old Rust backend — existing user data is preserved.
 """
 
@@ -11,9 +11,9 @@ import stat
 from pathlib import Path
 from typing import Any
 
-CONFIG_DIR = Path.home() / "miniflow"
-KEYS_FILE = CONFIG_DIR / "miniflow_keys.json"
-SETTINGS_FILE = CONFIG_DIR / "miniflow_settings.json"
+CONFIG_DIR = Path.home() / "biteflow"
+KEYS_FILE = CONFIG_DIR / "biteflow_keys.json"
+SETTINGS_FILE = CONFIG_DIR / "biteflow_settings.json"
 
 DEFAULT_FILLER_WORDS = [
     "um",

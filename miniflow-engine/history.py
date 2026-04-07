@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-HISTORY_FILE = Path.home() / "miniflow" / "history.json"
+HISTORY_FILE = Path.home() / "biteflow" / "history.json"
 
 
 def _read() -> list:

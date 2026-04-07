@@ -2,13 +2,13 @@
 	<img src="smallestbanner.webp" alt="smallest.ai" />
 </p>
 
-# <p align="center"> MiniFlow </p>
+# <p align="center"> BiteFlow </p>
 
 <p align="center">
 	Voice-to-text dictation and command assistant for macOS.
 </p>
 <p align="center">
-	Hold Fn to speak and MiniFlow types at your cursor using the fastest and most accurate speech-to-text model in the world.
+	Hold Fn to speak and BiteFlow types at your cursor using the fastest and most accurate speech-to-text model in the world.
 </p>
 
 <p align="center">
@@ -36,17 +36,17 @@
 
 ## Quick start
 
-1. Download the latest DMG and drag MiniFlow.app to Applications.
+1. Download the latest DMG and drag BiteFlow.app to Applications.
 2. Clear Gatekeeper and launch:
 
 ```bash
-xattr -cr /Applications/MiniFlow.app && open /Applications/MiniFlow.app
+xattr -cr /Applications/BiteFlow.app && open /Applications/BiteFlow.app
 ```
 
 3. Grant Microphone and Accessibility permissions when prompted.
 4. Open Settings and add your Smallest AI API key from https://app.smallest.ai.
 
-Keys are stored locally in `~/miniflow/miniflow_keys.json`.
+Keys are stored locally in `~/biteflow/biteflow_keys.json`.
 
 ## Usage
 
@@ -65,37 +65,37 @@ Example commands:
 
 ```bash
 # 1. Clone
-git clone https://github.com/your-org/miniflow.git
-cd miniflow
+git clone https://github.com/your-org/biteflow.git
+cd biteflow
 
 # 2. Install Python deps
-cd miniflow-engine && pip install -r requirements.txt && cd ..
+cd biteflow-engine && pip install -r requirements.txt && cd ..
 
 # 3. Build everything (backend + app + DMG)
 ./build_all.sh
 ```
 
-Output: `build/MiniFlow-0.2.0.dmg`
+Output: `build/BiteFlow-0.2.0.dmg`
 
 ## Project structure
 
 ```
-MiniflowApp/            # Swift/SwiftUI macOS app
-	MiniflowApp/          # App source, views, and view models
+BiteflowApp/            # Swift/SwiftUI macOS app
+	BiteflowApp/          # App source, views, and view models
 	Bridge/               # Swift networking helpers (API + event stream)
 	Models/               # Action + history models
 	Views/                # UI screens and components
-miniflow-engine/        # Python FastAPI engine
+biteflow-engine/        # Python FastAPI engine
 	connectors/           # Service connectors (disabled in MVP)
 	agent.py              # Intent + command execution
 	main.py               # API server and request routing
-miniflow-auth/          # OAuth helpers (disabled in MVP)
+biteflow-auth/          # OAuth helpers (disabled in MVP)
 build_*.sh              # Build scripts for backend/app/DMG
 ```
 
 ## Contributing
 
-We love contributions that keep MiniFlow fast, simple, and reliable.
+We love contributions that keep BiteFlow fast, simple, and reliable.
 
 1. Fork the repository.
 2. Create a feature branch: `git checkout -b feature/short-description`
@@ -118,7 +118,7 @@ We love contributions that keep MiniFlow fast, simple, and reliable.
 Logs:
 
 ```bash
-tail -f ~/miniflow/miniflow.log
+tail -f ~/biteflow/biteflow.log
 ```
 
 ## License

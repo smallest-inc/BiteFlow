@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve MiniFlow.
+Thanks for helping improve BiteFlow.
 
 ## Quick start
 
@@ -11,8 +11,8 @@ Thanks for helping improve MiniFlow.
 
 ## Development notes
 
-- Swift app lives in `MiniflowApp/`.
-- Python engine lives in `miniflow-engine/`.
+- Swift app lives in `BiteflowApp/`.
+- Python engine lives in `biteflow-engine/`.
 - Build the DMG with `./build_all.sh`.
 
 ## Code style
@@ -26,4 +26,4 @@ Please include:
 - macOS version
 - Steps to reproduce
 - Expected vs actual behavior
-- Logs from `~/miniflow/miniflow.log`
+- Logs from `~/biteflow/biteflow.log`

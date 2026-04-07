@@ -68,7 +68,7 @@ struct DictionaryTab: View {
                     Text("Your words, always spelled right")
                         .font(.system(size: 15, weight: .semibold, design: .monospaced))
                         .foregroundStyle(Color.black)
-                    Text("MiniFlow learns your unique words and names as you speak, or add them yourself. From client names to industry jargon, make sure MiniFlow always gets it right.")
+                    Text("BiteFlow learns your unique words and names as you speak, or add them yourself. From client names to industry jargon, make sure BiteFlow always gets it right.")
                         .font(.system(size: 13))
                         .foregroundStyle(Color.textMuted)
                         .fixedSize(horizontal: false, vertical: true)

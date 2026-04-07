@@ -145,7 +145,7 @@ struct SettingsTab: View {
                     if #available(macOS 13, *) {
                         settingsRow(
                             title: "Launch at Login",
-                            subtitle: "MiniFlow will start automatically when you log in."
+                            subtitle: "BiteFlow will start automatically when you log in."
                         ) {
                             Toggle("", isOn: Binding<Bool>(
                                 get: { SMAppService.mainApp.status == .enabled },
@@ -163,7 +163,7 @@ struct SettingsTab: View {
 
                     settingsRow(
                         title: "Accessibility Permission",
-                        subtitle: "Required for MiniFlow to type into other apps."
+                        subtitle: "Required for BiteFlow to type into other apps."
                     ) {
                         Button("Open") {
                             NSWorkspace.shared.open(
@@ -275,7 +275,7 @@ struct SettingsTab: View {
         Group {
             switch state {
             case .error:
-                Text("Could not save — is the MiniFlow engine running?")
+                Text("Could not save — is the BiteFlow engine running?")
                     .foregroundStyle(Color.errorRed)
             default:
                 Text(hint).foregroundStyle(Color.textMuted)

@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 from typing import Optional
 
-DICT_FILE = Path.home() / "miniflow" / "dictionary.json"
+DICT_FILE = Path.home() / "biteflow" / "dictionary.json"
 
 # ── In-memory cache ───────────────────────────────────────────────────────────
 # _refresh() always calls _read() on every apply() so unittest.mock patches

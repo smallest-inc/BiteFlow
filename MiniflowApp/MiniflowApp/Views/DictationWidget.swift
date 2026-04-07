@@ -30,7 +30,7 @@ struct DictationWidget: View {
                             .font(.system(size: 14))
                             .foregroundStyle(Color.black)
                     }
-                    Text("Speak naturally — MiniFlow transcribes and executes your voice commands in any app.")
+                    Text("Speak naturally — BiteFlow transcribes and executes your voice commands in any app.")
                         .font(.system(size: 12))
                         .foregroundStyle(Color.black)
                         .lineLimit(2)
