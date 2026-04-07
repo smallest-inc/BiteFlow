@@ -1,9 +1,9 @@
 # Build outputs
 build/
-biteflow-engine/dist/
-biteflow-engine/build/
-biteflow-engine/__pycache__/
-biteflow-engine/*.spec
+miniflow-engine/dist/
+miniflow-engine/build/
+miniflow-engine/__pycache__/
+miniflow-engine/*.spec
 **/__pycache__/
 **/*.pyc
 
@@ -31,8 +31,8 @@ biteflow_keys.json
 .env*
 
 # Python venvs
-biteflow-engine/.venv/
-biteflow-engine/venv/
+miniflow-engine/.venv/
+miniflow-engine/venv/
 
 # Claude internal docs
 .claude/

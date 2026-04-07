@@ -5,7 +5,7 @@
 #   1. Build the Python backend: ./build_backend.sh
 #   2. Build the Swift .app in Xcode (Product -> Archive, or Product -> Build)
 #   3. Ensure engine bundle exists inside the app:
-#        build/BiteFlow.app/Contents/Resources/biteflow-engine/biteflow-engine
+#        build/BiteFlow.app/Contents/Resources/miniflow-engine/miniflow-engine
 #
 # Usage:
 #   chmod +x build_dmg.sh
@@ -31,9 +31,9 @@ if [ ! -d "$APP_PATH" ]; then
   exit 1
 fi
 
-ENGINE_BINARY="$APP_PATH/Contents/Resources/biteflow-engine/biteflow-engine"
+ENGINE_BINARY="$APP_PATH/Contents/Resources/miniflow-engine/miniflow-engine"
 if [ ! -f "$ENGINE_BINARY" ]; then
-  echo "✗ biteflow-engine binary not found inside .app"
+  echo "✗ miniflow-engine binary not found inside .app"
   echo "  Run ./build_all.sh to build everything from scratch."
   exit 1
 fi

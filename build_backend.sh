@@ -2,8 +2,8 @@
 # build_backend.sh — Bundle the Python backend into a directory bundle.
 # Uses the project venv so no system Python dependencies are needed.
 #
-# Output: biteflow-engine/dist/biteflow-engine/  (directory, ~80 MB)
-# The executable is: dist/biteflow-engine/biteflow-engine
+# Output: miniflow-engine/dist/miniflow-engine/  (directory, ~80 MB)
+# The executable is: dist/miniflow-engine/miniflow-engine
 #
 # Using --onedir (not --onefile) so the engine launches instantly without
 # a slow /tmp extraction step on every run.
@@ -11,14 +11,14 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ENGINE_DIR="$SCRIPT_DIR/biteflow-engine"
+ENGINE_DIR="$SCRIPT_DIR/miniflow-engine"
 VENV="$ENGINE_DIR/venv"
 
 # ── Use venv Python ───────────────────────────────────────────────────────────
 
 if [ ! -d "$VENV" ]; then
   echo "✗ venv not found at $VENV"
-  echo "  Run: cd biteflow-engine && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+  echo "  Run: cd miniflow-engine && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
   exit 1
 fi
 
@@ -33,12 +33,12 @@ PYINSTALLER="$VENV/bin/pyinstaller"
 
 # ── Bundle ────────────────────────────────────────────────────────────────────
 
-echo "→ Bundling biteflow-engine..."
+echo "→ Bundling miniflow-engine..."
 cd "$ENGINE_DIR"
 
 "$PYINSTALLER" \
   --onedir \
-  --name biteflow-engine \
+  --name miniflow-engine \
   --hidden-import "uvicorn.logging" \
   --hidden-import "uvicorn.loops.auto" \
   --hidden-import "uvicorn.lifespan.on" \
@@ -50,5 +50,5 @@ cd "$ENGINE_DIR"
   main.py
 
 echo ""
-echo "✓ Bundle ready: $ENGINE_DIR/dist/biteflow-engine/"
-echo "  Executable:   $ENGINE_DIR/dist/biteflow-engine/biteflow-engine"
+echo "✓ Bundle ready: $ENGINE_DIR/dist/miniflow-engine/"
+echo "  Executable:   $ENGINE_DIR/dist/miniflow-engine/miniflow-engine"

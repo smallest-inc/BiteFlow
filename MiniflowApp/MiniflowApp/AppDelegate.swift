@@ -194,20 +194,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         try? FileManager.default.createDirectory(
             at: logURL.deletingLastPathComponent(), withIntermediateDirectories: true)
 
-        // onedir layout: Contents/Resources/biteflow-engine/biteflow-engine
-        // legacy fallback: Contents/MacOS/biteflow-engine
+        // onedir layout: Contents/Resources/miniflow-engine/miniflow-engine
+        // legacy fallback: Contents/MacOS/miniflow-engine
         let resources = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources")
         let macOS = Bundle.main.bundleURL.appendingPathComponent("Contents/MacOS")
         let candidates = [
-            resources.appendingPathComponent("biteflow-engine/biteflow-engine"),
-            macOS.appendingPathComponent("biteflow-engine/biteflow-engine"),
-            macOS.appendingPathComponent("biteflow-engine"),
+            resources.appendingPathComponent("miniflow-engine/miniflow-engine"),
+            macOS.appendingPathComponent("miniflow-engine/miniflow-engine"),
+            macOS.appendingPathComponent("miniflow-engine"),
         ]
 
         guard let engineURL = candidates.first(where: {
             FileManager.default.isExecutableFile(atPath: $0.path)
         }) else {
-            appendToLog(logURL, "[Swift] ERROR: biteflow-engine binary not found in bundle\n")
+            appendToLog(logURL, "[Swift] ERROR: miniflow-engine binary not found in bundle\n")
             appendToLog(logURL, "[Swift] Searched: \(candidates.map(\.path).joined(separator: ", "))\n")
             return
         }
@@ -233,8 +233,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // launchctl setenv SSL_CERT_FILE ".../cacert.pem"
         // launchctl setenv REQUESTS_CA_BUNDLE ".../cacert.pem"
         let certCandidates = [
-            resources.appendingPathComponent("biteflow-engine/_internal/certifi/cacert.pem"),
-            resources.appendingPathComponent("biteflow-engine/certifi/cacert.pem"),
+            resources.appendingPathComponent("miniflow-engine/_internal/certifi/cacert.pem"),
+            resources.appendingPathComponent("miniflow-engine/certifi/cacert.pem"),
         ]
         if let certURL = certCandidates.first(where: {
             FileManager.default.fileExists(atPath: $0.path)

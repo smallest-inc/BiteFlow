@@ -16,7 +16,7 @@ jobs:
       - name: Get version
         id: version
         run: |
-          VERSION=$(grep -m1 'MARKETING_VERSION' BiteflowApp/BiteflowApp.xcodeproj/project.pbxproj \
+          VERSION=$(grep -m1 'MARKETING_VERSION' MiniflowApp/MiniflowApp.xcodeproj/project.pbxproj \
             | sed 's/.*= *//;s/;//;s/ *//')
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
@@ -27,7 +27,7 @@ jobs:
 
       - name: Create venv & install dependencies
         run: |
-          cd biteflow-engine
+          cd miniflow-engine
           python3 -m venv venv
           source venv/bin/activate
           pip install --upgrade pip

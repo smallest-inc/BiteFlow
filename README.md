@@ -69,7 +69,7 @@ git clone https://github.com/your-org/biteflow.git
 cd biteflow
 
 # 2. Install Python deps
-cd biteflow-engine && pip install -r requirements.txt && cd ..
+cd miniflow-engine && pip install -r requirements.txt && cd ..
 
 # 3. Build everything (backend + app + DMG)
 ./build_all.sh
@@ -80,12 +80,12 @@ Output: `build/BiteFlow-0.2.0.dmg`
 ## Project structure
 
 ```
-BiteflowApp/            # Swift/SwiftUI macOS app
-	BiteflowApp/          # App source, views, and view models
+MiniflowApp/            # Swift/SwiftUI macOS app
+	MiniflowApp/          # App source, views, and view models
 	Bridge/               # Swift networking helpers (API + event stream)
 	Models/               # Action + history models
 	Views/                # UI screens and components
-biteflow-engine/        # Python FastAPI engine
+miniflow-engine/        # Python FastAPI engine
 	connectors/           # Service connectors (disabled in MVP)
 	agent.py              # Intent + command execution
 	main.py               # API server and request routing

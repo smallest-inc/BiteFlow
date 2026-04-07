@@ -11,8 +11,8 @@ Thanks for helping improve BiteFlow.
 
 ## Development notes
 
-- Swift app lives in `BiteflowApp/`.
-- Python engine lives in `biteflow-engine/`.
+- Swift app lives in `MiniflowApp/`.
+- Python engine lives in `miniflow-engine/`.
 - Build the DMG with `./build_all.sh`.
 
 ## Code style
